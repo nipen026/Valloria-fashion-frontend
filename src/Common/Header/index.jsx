@@ -1,0 +1,184 @@
+
+import React, { useEffect, useRef, useState } from 'react';
+import { FaSearch, FaUser, FaShoppingBag, FaTruck } from 'react-icons/fa';
+import logo from '../../assets/logo.png';
+import { IoMdExit } from 'react-icons/io';
+import { Link, useNavigate } from 'react-router-dom';
+import { GET_ALL_CART, GET_SEARCH_DATA } from '../../api/get';
+import { InfinitySpin, Vortex } from 'react-loader-spinner';
+
+
+const Header = () => {
+  const [showSearch, setShowSearch] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const [cartData, setCartData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const userMenuRef = useRef(null);
+  const token = localStorage.getItem('access-token');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getCart();
+    const handleClickOutside = (event) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+        setShowUserMenu(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('access-token');
+    window.location.reload();
+  };
+
+  const getCart = async () => {
+    const res = await GET_ALL_CART();
+    setCartData(res.data || []);
+  };
+
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      if (searchTerm.length > 1) {
+        fetchSearchResults(searchTerm);
+      } else {
+        setSearchResults([]);
+      }
+    }, 400);
+
+    return () => clearTimeout(delayDebounce);
+  }, [searchTerm]);
+
+  const fetchSearchResults = async (query) => {
+    setLoading(true);
+    try {
+      const res = await GET_SEARCH_DATA(query);
+      setSearchResults(res.data.products || []);
+    } catch (error) {
+      console.error('Search error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <header className="sticky top-0 z-50 bg-secondary dark:bg-black shadow">
+      <div className="bg-primary text-secondary text-sm py-2 overflow-hidden">
+        <div className="animate-marquee whitespace-nowrap flex items-center justify-center gap-2">
+          <FaTruck className="inline-block ml-4" />
+          <span>Free Shipping on Orders Over ₹1000</span>
+        </div>
+      </div>
+
+      <nav className="flex justify-between items-center px-6 py-4">
+        <Link to={'/'}>
+          <div className="flex items-center gap-2 text-primary font-bold text-lg dark:text-secondary">
+            <img src={logo} alt='logo' className='w-[60px] object-contain cursor-pointer' />
+            <span className="block md:hidden text-white text-xl font-extrabold">Velloria Fashion</span>
+          </div>
+        </Link>
+
+        <ul className={`hidden md:flex gap-6 text-sm dark:text-secondary ${showSearch ? 'opacity-0' : 'opacity-100'}`}>
+          <li onClick={() => navigate('/productListing?latest=true')} className="hover:text-primary cursor-pointer font-medium text-[16px]">New Arrivals</li>
+          <li onClick={() => navigate('/productListing?category=formal_wear')} className="hover:text-primary cursor-pointer font-medium text-[16px]">Formal Wear</li>
+          <li onClick={() => navigate('/productListing?category=casual_wear')} className="hover:text-primary cursor-pointer font-medium text-[16px]">Casual Wear</li>
+          <li onClick={() => navigate('/productListing?category=sale')} className="hover:text-primary cursor-pointer font-medium text-[16px]">Sale</li>
+        </ul>
+
+        <div className="flex gap-4 items-center dark:text-secondary relative">
+          <FaSearch onClick={() => setShowSearch(!showSearch)} className="cursor-pointer hover:text-primary" />
+
+          {token ? (
+            <>
+              <div className="relative" ref={userMenuRef}>
+                <FaUser onClick={() => setShowUserMenu(!showUserMenu)} className="cursor-pointer hover:text-primary" />
+                {showUserMenu && (
+                  <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-zinc-900 shadow-lg rounded-md py-2 z-50">
+                    <a href="/account" className="flex items-center gap-4 px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-zinc-700">
+                      <FaUser /> My Account
+                    </a>
+                    <a onClick={handleLogout} className="flex items-center gap-4 px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-zinc-700">
+                      <IoMdExit /> Logout
+                    </a>
+                  </div>
+                )}
+              </div>
+              <Link to={cartData.length > 0 ? '/cart' : '/'}>
+                <div className="relative">
+                  <FaShoppingBag className="cursor-pointer hover:text-primary" />
+                  <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-semibold w-5 h-5 flex items-center justify-center rounded-full">
+                    {cartData.length}
+                  </span>
+                </div>
+              </Link>
+            </>
+          ) : (
+            <a href="/login" className="text-sm px-4 py-1 rounded border border-primary text-primary hover:bg-primary hover:text-white">Login</a>
+          )}
+        </div>
+      </nav>
+
+      <div className={`transition-all duration-500 ${showSearch ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="px-6 pb-4 relative">
+          <input
+            type="text"
+            placeholder="Search for products..."
+            className="w-full p-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-zinc-800 text-black dark:text-white"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value); if (e.target.value.length > 0) {
+                setLoading(true);
+              } else {
+                setLoading(false);
+              }
+            }}
+          />
+          {loading ?
+            <div className='flex items-center justify-center'>
+              <InfinitySpin
+                visible={true}
+                width="150"
+                color="#0a4b3c"
+                ariaLabel="infinity-spin-loading"
+              />
+            </div> : ''}
+          {searchResults.length > 0 && (
+            <>
+
+              <div className="absolute left-6 right-6 bg-white dark:bg-zinc-800 shadow-md rounded-md mt-2 z-50 max-h-60 overflow-y-auto">
+                {searchResults.map((product) => (
+                  <div
+                    key={product.id}
+                    onClick={() => {
+                      setShowSearch(false);
+                      setSearchTerm('');
+                      navigate(`/productDetails/${product.id}`);
+                    }}
+                    className="flex gap-4 p-3 hover:bg-gray-100 dark:hover:bg-zinc-700 cursor-pointer border-b dark:border-zinc-600"
+                  >
+                    <img src={product.variants?.[0].images?.[0]} alt={product.productName} className="w-14 h-14 object-cover rounded" />
+                    <div>
+                      <div className="font-medium text-sm">{product.productName}</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-300">Sizes: {product.variants?.[0]?.size?.join(', ') || 'N/A'}</div>
+                      <div className="flex gap-1 mt-1">
+                        {product.variants?.map((product, idx) => (
+                          <span key={idx} className="w-3 h-3 rounded-full border border-gray-300" style={{ backgroundColor: product?.color }}></span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Header;
