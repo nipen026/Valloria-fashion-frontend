@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 import LoginSuccess from "./Components/LoginSuccess";
 import MyAccount from "./Components/MyAccount";
+import WishlistPage from "./Pages/WishlistPage";
 function App() {
    useEffect(() => {
     const userPref = localStorage.getItem('theme');
@@ -36,6 +37,7 @@ function App() {
       <Route path="/productListing" element={<ProductListing/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/register" element={<Register/>}/>
+      <Route path="/wishlist" element={<WishlistPage />} />
       <Route path="/account" element={<MyAccount/>}/>
       <Route path="/login/success" element={<LoginSuccess />} />
     

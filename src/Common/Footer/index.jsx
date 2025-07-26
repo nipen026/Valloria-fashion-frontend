@@ -8,9 +8,9 @@ const Footer = () => {
 
         {/* About */}
         <div>
-          <h4 className="font-semibold text-lg mb-4">About Vogue Vastra</h4>
+          <h4 className="font-semibold text-lg mb-4">About Valloria Fashion</h4>
           <p className="text-sm text-gray-200 dark:text-gray-400">
-            Elevating men's fashion with premium quality clothing and accessories since 2010.
+            Elevating men's and woman's fashion with premium quality clothing since 2023.
           </p>
         </div>
 
@@ -20,8 +20,6 @@ const Footer = () => {
           <ul className="space-y-2 text-sm text-gray-200 dark:text-gray-400">
             <li><a href="#">Contact Us</a></li>
             <li><a href="#">Shipping & Returns</a></li>
-            <li><a href="#">Size Guide</a></li>
-            <li><a href="#">FAQ</a></li>
           </ul>
         </div>
 
@@ -29,10 +27,9 @@ const Footer = () => {
         <div>
           <h4 className="font-semibold text-lg mb-4">Quick Links</h4>
           <ul className="space-y-2 text-sm text-gray-200 dark:text-gray-400">
-            <li><a href="#">New Arrivals</a></li>
-            <li><a href="#">Best Sellers</a></li>
-            <li><a href="#">Sale</a></li>
-            <li><a href="#">Gift Cards</a></li>
+            <li><a href="/productListing?latest=true">New Arrivals</a></li>
+            <li><a href="/productListing?latest=true">Best Sellers</a></li>
+            <li><a href="/productListing?latest=true">Sale</a></li>
           </ul>
         </div>
 
@@ -58,7 +55,7 @@ const Footer = () => {
 
       {/* Bottom */}
       <div className="mt-10 border-t border-white/20 dark:border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between text-sm px-4">
-        <p className="text-gray-300">&copy; 2024 Vogue Vastra. All rights reserved.</p>
+        <p className="text-gray-300">&copy; 2024 Valloria Fashion. All rights reserved.</p>
         <div className="flex gap-4 mt-4 md:mt-0 text-gray-200">
           <a href="#"><FaFacebookF /></a>
           <a href="#"><FaTwitter /></a>

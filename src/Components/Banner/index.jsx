@@ -1,7 +1,9 @@
 import React from 'react';
 import bannerVideo from '../../assets/banner.mp4';
+import { useNavigate } from 'react-router-dom';
 
 const Banner = () => {
+  const navigate = useNavigate();
   return (
     <section className="relative h-[calc(100vh-130px)] w-full overflow-hidden" aria-label="Velloria Fashion Banner">
       {/* Background Video */}
@@ -36,7 +38,7 @@ const Banner = () => {
             <li>Fashion for every occasion</li>
           </ul> */}
 
-          <button className="border border-white font-semibold px-6 py-2 text-white hover:bg-white hover:text-primary ease-in transition">
+          <button onClick={()=>navigate('/productListing?latest=true')} className="border border-white font-semibold px-6 py-2 text-white hover:bg-white hover:text-primary ease-in transition">
             Shop Now
           </button>
         </div>

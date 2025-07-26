@@ -28,7 +28,7 @@ module.exports = {
         }
       },
       colors: {
-        primary: '#0A4B3C',     // Dark green
+        primary: '#432b21',     // Dark green
         secondary: '#ffffff',   // White
         black: '#000000',       // Black
       },

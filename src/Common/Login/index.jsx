@@ -32,14 +32,14 @@ const Login = () => {
             return;
         }
         const data = {
-            email:email,
-            password:password
+            email: email,
+            password: password
         }
         try {
             const res = await LOGIN(data);
             toast.success('Login successfully');
             navigate('/');
-            localStorage.setItem('access-token',res.data.token)
+            localStorage.setItem('access-token', res.data.token)
             // redirect or save token if needed
         } catch (err) {
             setError(err?.response?.data?.message || 'Login failed. Please try again.');
@@ -49,7 +49,10 @@ const Login = () => {
     // ✅ Google Login
     const handleGoogleLogin = async () => {
         setError('');
-        window.location.href = "http://localhost:5000/api/auth/google";
+        {
+            import.meta.env.VITE_NODE === 'local' ?
+            window.location.href = "http://localhost:5000/api/auth/google" : window.location.href = "https://valloria-fashion-backend.onrender.com/api/auth/google";
+        }
         // try {
         //   const result = await signInWithPopup(auth, provider);
         //   const user = result.user;

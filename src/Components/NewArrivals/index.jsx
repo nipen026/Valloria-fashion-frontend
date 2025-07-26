@@ -4,10 +4,10 @@ import { GET_PRODUCT } from '../../api/get';
 import { FaChevronRight, FaRegHeart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -20,20 +20,19 @@ const NewArrivals = () => {
     fetchProducts();
   }, []);
 
-
   return (
-    <section className="py-12 bg-[#F9FAFB] dark:bg-black transition-colors">
-      <div className="container mx-auto px-4">
-        <div className='flex items-center justify-between'>
-          <h2 className="text-2xl md:text-3xl font-semibold text-black dark:text-white mb-10">
+    <section className="py-10 bg-[#F9FAFB] dark:bg-black transition-colors">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Heading Row */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-black dark:text-white">
             New Arrivals
           </h2>
-
           <div
-            className='cursor-pointer group'
+            className="cursor-pointer group"
             onClick={() => navigate('/productListing?latest=true')}
           >
-            <p className='flex items-center gap-2 text-black dark:text-white font-medium'>
+            <p className="flex items-center gap-2 text-black dark:text-white font-medium">
               <span className="transition-transform duration-300 group-hover:translate-x-1">
                 View More
               </span>
@@ -42,7 +41,8 @@ const NewArrivals = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        {/* Product Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((product) => {
             const variant = product.variants?.[0];
             if (!variant) return null;
@@ -50,8 +50,7 @@ const NewArrivals = () => {
             return (
               <div
                 key={variant.id}
-
-                className="group relative dark:bg-zinc-900 rounded-lg shadow overflow-hidden transition"
+                className="group relative bg-white dark:bg-zinc-900 rounded-xl shadow-md hover:shadow-lg overflow-hidden transition-all"
               >
                 {/* Wishlist Icon */}
                 <div className="absolute top-[-40px] left-4 group-hover:top-4 transition-all duration-300 z-10">
@@ -65,25 +64,35 @@ const NewArrivals = () => {
                   onClick={() => navigate(`productDetails/${product.id}`)}
                   src={variant.images?.[0]}
                   alt={product.productName}
-                  className="w-full h-[400px] object-cover"
+                  className="w-full h-64 sm:h-72 md:h-80 object-cover cursor-pointer transition-transform group-hover:scale-105"
                 />
 
-                <div className="p-4 space-y-2" >
-                  <h3 className="text-lg font-semibold text-black dark:text-white" onClick={() => navigate(`productDetails/${product.id}`)}>
+                <div className="p-4 space-y-2">
+                  {/* Product Name */}
+                  <h3
+                    className="text-lg font-semibold text-black dark:text-white cursor-pointer"
+                    onClick={() => navigate(`productDetails/${product.id}`)}
+                  >
                     {product.productName}
                   </h3>
 
-                  <p className="text-sm text-primary font-semibold flex items-center gap-5 dark:text-gray-300 mb-2" onClick={() => navigate(`productDetails/${product.id}`)}>
-                    ₹ {variant.salePrice}{' '}
+                  {/* Price */}
+                  <p
+                    className="text-sm text-primary font-semibold flex items-center gap-4 dark:text-gray-300"
+                    onClick={() => navigate(`productDetails/${product.id}`)}
+                  >
+                    ₹ {variant.salePrice}
                     <del className="text-red-400">₹ {variant.mrp}</del>
                     <span className="text-black font-semibold">
                       ({Math.round(((variant.mrp - variant.salePrice) / variant.mrp) * 100)}% OFF)
                     </span>
                   </p>
 
-
-                  {/* Colors */}
-                  <div className="flex items-center gap-2 mb-2" onClick={() => navigate(`productDetails/${product.id}`)}>
+                  {/* Color */}
+                  <div
+                    className="flex items-center gap-2"
+                    onClick={() => navigate(`productDetails/${product.id}`)}
+                  >
                     <div
                       className="w-5 h-5 rounded-full border"
                       style={{ backgroundColor: variant.color }}
@@ -92,7 +101,7 @@ const NewArrivals = () => {
                   </div>
 
                   {/* Sizes */}
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-2">
                     {variant.size.map((sz) => (
                       <span
                         key={sz}
@@ -106,7 +115,7 @@ const NewArrivals = () => {
                   {/* Add to Cart */}
                   <button
                     onClick={() => navigate(`productDetails/${product.id}`)}
-                    className="w-full bg-primary text-white py-2 rounded hover:bg-opacity-90 transition"
+                    className="w-full border border-primary font-semibold text-primary py-2 rounded hover:bg-opacity-90 transition"
                   >
                     Add to Cart
                   </button>

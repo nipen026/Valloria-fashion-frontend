@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef, useState } from 'react';
-import { FaSearch, FaUser, FaShoppingBag, FaTruck } from 'react-icons/fa';
+import { FaSearch, FaUser, FaShoppingBag, FaTruck, FaHeart } from 'react-icons/fa';
 import logo from '../../assets/logo.png';
 import { IoMdExit } from 'react-icons/io';
 import { Link, useNavigate } from 'react-router-dom';
@@ -91,6 +91,7 @@ const Header = () => {
 
         <div className="flex gap-4 items-center dark:text-secondary relative">
           <FaSearch onClick={() => setShowSearch(!showSearch)} className="cursor-pointer hover:text-primary" />
+          <FaHeart onClick={()=>navigate('/wishlist')} className="cursor-pointer hover:text-primary" />
 
           {token ? (
             <>
@@ -107,6 +108,7 @@ const Header = () => {
                   </div>
                 )}
               </div>
+              {cartData.length > 0 ?
               <Link to={cartData.length > 0 ? '/cart' : '/'}>
                 <div className="relative">
                   <FaShoppingBag className="cursor-pointer hover:text-primary" />
@@ -114,7 +116,7 @@ const Header = () => {
                     {cartData.length}
                   </span>
                 </div>
-              </Link>
+              </Link> : ''}
             </>
           ) : (
             <a href="/login" className="text-sm px-4 py-1 rounded border border-primary text-primary hover:bg-primary hover:text-white">Login</a>
