@@ -14,7 +14,7 @@ const LoginSuccess = () => {
       localStorage.setItem('access-token', token); // Or use context/redux
       navigate('/'); // or home page
     } else {
-      navigate('/login'); // fallback
+      navigate('/signin'); // fallback
     }
   }, [location, navigate]);
 

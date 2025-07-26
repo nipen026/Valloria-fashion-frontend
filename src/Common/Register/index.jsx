@@ -42,7 +42,7 @@ const Register = () => {
             const res = await REGISTER(formData);
             // console.log('Registration success:', res.data);
             toast.success('Registration successfully')
-            navigate('/login')
+            navigate('/signin')
             // Redirect or show success
         } catch (err) {
             toast.error( err.response?.data || err);
@@ -139,7 +139,7 @@ const Register = () => {
                     </form>
 
                     <p className="text-sm text-gray-600 mt-4 text-center">
-                        Already have an account? <a href="/login" className="text-primary hover:underline">Login</a>
+                        Already have an account? <a href="/signin" className="text-primary hover:underline">Login</a>
                     </p>
                 </div>
             </div>

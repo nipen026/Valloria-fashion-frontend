@@ -149,7 +149,7 @@ const MyAccount = () => {
         }
       } catch (err) {
         console.error('Error fetching user data', err);
-        navigate('/login');
+        navigate('/signin');
       }
     };
 
@@ -158,7 +158,7 @@ const MyAccount = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('access-token');
-    navigate('/login');
+    navigate('/signin');
   };
 
   if (!user) {

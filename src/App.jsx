@@ -35,7 +35,7 @@ function App() {
       <Route path="/shipping" element={<ShippingPage/>}/>
       <Route path="/track" element={<TrackOrderPage/>}/>
       <Route path="/productListing" element={<ProductListing/>}/>
-      <Route path="/login" element={<Login/>}/>
+      <Route path="/signin" element={<Login/>}/>
       <Route path="/register" element={<Register/>}/>
       <Route path="/wishlist" element={<WishlistPage />} />
       <Route path="/account" element={<MyAccount/>}/>

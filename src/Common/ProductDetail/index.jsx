@@ -220,7 +220,7 @@ const ProductDetail = () => {
 
     const handleAddToCart = async () => {
         if (!token) {
-            navigate('/login')
+            navigate('/signin')
         }
         const bodyData = {
             productId: product.id,

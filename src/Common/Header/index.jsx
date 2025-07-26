@@ -119,7 +119,7 @@ const Header = () => {
               </Link> : ''}
             </>
           ) : (
-            <a href="/login" className="text-sm px-4 py-1 rounded border border-primary text-primary hover:bg-primary hover:text-white">Login</a>
+            <a href="/signin" className="text-sm px-4 py-1 rounded border border-primary text-primary hover:bg-primary hover:text-white">Login</a>
           )}
         </div>
       </nav>
