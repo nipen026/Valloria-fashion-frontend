@@ -16,7 +16,7 @@ const Register = () => {
         email: '',
         password: '',
         number: '',
-        role:'user',
+        role: 'user',
     });
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate()
@@ -25,15 +25,10 @@ const Register = () => {
     };
 
     const handleGoogleRegister = async () => {
-        // try {
-        //     const result = await signInWithPopup(auth, provider);
-        //     const user = result.user;
-        //     const token = await user.getIdToken();
-        //     const res = await axios.post('http://localhost:5000/api/auth/google-register', { token });
-        //     console.log('Google register success:', res.data);
-        // } catch (err) {
-        //     console.error('Google register error:', err);
-        // }
+        {
+            import.meta.env.VITE_NODE === 'local' ?
+                window.location.href = "http://localhost:5000/api/auth/google" : window.location.href = "https://valloria-fashion-backend.onrender.com/api/auth/google";
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -45,7 +40,7 @@ const Register = () => {
             navigate('/signin')
             // Redirect or show success
         } catch (err) {
-            toast.error( err.response?.data || err);
+            toast.error(err.response?.data || err);
         }
     };
 
@@ -126,7 +121,7 @@ const Register = () => {
                                 onClick={() => setShowPassword(!showPassword)}
                                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-sm text-gray-500"
                             >
-                                 {showPassword ? <FaEye /> : <FaEyeLowVision />}
+                                {showPassword ? <FaEye /> : <FaEyeLowVision />}
                             </button>
                         </div>
 

@@ -53,19 +53,7 @@ const Login = () => {
             import.meta.env.VITE_NODE === 'local' ?
             window.location.href = "http://localhost:5000/api/auth/google" : window.location.href = "https://valloria-fashion-backend.onrender.com/api/auth/google";
         }
-        // try {
-        //   const result = await signInWithPopup(auth, provider);
-        //   const user = result.user;
-        //   const token = await user.getIdToken();
 
-        //   // Send token to backend
-        //   const res = await axios.post('http://localhost:5000/api/auth/google-login', { token });
-        //   console.log('Google login success:', res.data);
-        //   // redirect or save token if needed
-        // } catch (err) {
-        //   console.error('Google login error:', err);
-        //   setError('Google login failed. Please try again.');
-        // }
     };
 
     return (
