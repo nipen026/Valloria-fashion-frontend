@@ -9,11 +9,15 @@ import { Route, Routes } from "react-router-dom";
 import ProductListing from "./Pages/ProductListing";
 import Login from "./Common/Login";
 import Register from "./Common/Register";
-import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 import LoginSuccess from "./Components/LoginSuccess";
 import MyAccount from "./Components/MyAccount";
 import WishlistPage from "./Pages/WishlistPage";
+import ReturnShippingPolicy from "./Components/ReturnShippingPolicy";
+import AOS from 'aos';
+import 'react-toastify/dist/ReactToastify.css';
+import 'aos/dist/aos.css';
+
 function App() {
    useEffect(() => {
     const userPref = localStorage.getItem('theme');
@@ -25,6 +29,13 @@ function App() {
       document.documentElement.classList.remove('dark');
     }
   }, []);
+
+  useEffect(() => {
+  AOS.init({
+    duration: 800,
+    once: true,
+  });
+}, []);
   return (
     <>
     <ToastContainer/>
@@ -40,6 +51,7 @@ function App() {
       <Route path="/wishlist" element={<WishlistPage />} />
       <Route path="/account" element={<MyAccount/>}/>
       <Route path="/login/success" element={<LoginSuccess />} />
+      <Route path="/returnPolicy" element={<ReturnShippingPolicy />} />
     
     </Routes>
     </>

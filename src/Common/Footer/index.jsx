@@ -19,7 +19,7 @@ const Footer = () => {
           <h4 className="font-semibold text-lg mb-4">Customer Service</h4>
           <ul className="space-y-2 text-sm text-gray-200 dark:text-gray-400">
             <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Shipping & Returns</a></li>
+            <li><a href="/returnPolicy">Shipping & Returns</a></li>
           </ul>
         </div>
 

@@ -33,6 +33,18 @@ export const ADD_CART = (data) =>{
       .catch((err) => reject(err));
   });
 }
+export const ADD_WISHLIST = (data) =>{
+    return new Promise((resolve, reject) => {
+    axios
+      .post(`${base_url}wishlist/add`,data,{
+        headers:{
+            Authorization:`Bearer ${token}`
+        }
+      })
+      .then((res) => resolve(res))
+      .catch((err) => reject(err));
+  });
+}
 
 
 
@@ -42,6 +54,18 @@ export const DELETE_CART = (id) =>{
     return new Promise((resolve, reject) => {
     axios
       .delete(`${base_url}cart/DeleteCartById/${id}`,{
+        headers:{
+            Authorization:`Bearer ${token}`
+        }
+      })
+      .then((res) => resolve(res))
+      .catch((err) => reject(err));
+  });
+}
+export const DELETE_WISHLIST = (id) =>{
+    return new Promise((resolve, reject) => {
+    axios
+      .delete(`${base_url}wishlist/remove/${id}`,{
         headers:{
             Authorization:`Bearer ${token}`
         }

@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { GET_PRODUCT } from '../../api/get';
-import { FaChevronRight, FaRegHeart } from 'react-icons/fa';
+import { FaChevronRight, FaHeart, FaRegHeart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { ADD_WISHLIST } from '../../api/post';
+import { toast } from 'react-toastify';
 
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
+  const [isWished, setIsWished] = useState(false);
+  const [shake, setShake] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +23,23 @@ const NewArrivals = () => {
     };
     fetchProducts();
   }, []);
+
+  const handleAddWishList = (product) => {
+    const bodyData = {
+      productId: product?.id,
+    };
+    ADD_WISHLIST(bodyData)
+      .then((res) => {
+        toast("Added In Wishlist");
+        setIsWished(true);
+        setShake(true);
+        setTimeout(() => setShake(false), 500); // reset shake after animation
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err.response.data.message);
+      });
+  };
 
   return (
     <section className="py-10 bg-[#F9FAFB] dark:bg-black transition-colors">
@@ -43,19 +64,29 @@ const NewArrivals = () => {
 
         {/* Product Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products.map((product) => {
+          {products.map((product,index) => {
             const variant = product.variants?.[0];
             if (!variant) return null;
 
             return (
               <div
+               data-aos="zoom-in"
+                data-aos-delay={index * 100}
                 key={variant.id}
                 className="group relative bg-white dark:bg-zinc-900 rounded-xl shadow-md hover:shadow-lg overflow-hidden transition-all"
               >
                 {/* Wishlist Icon */}
                 <div className="absolute top-[-40px] left-4 group-hover:top-4 transition-all duration-300 z-10">
-                  <button className="bg-white p-2 rounded-full shadow hover:scale-105">
-                    <FaRegHeart size={18} className="text-red-500" />
+                  <button
+                    className={`bg-white p-2 rounded-full shadow hover:scale-105 transition-transform ${shake ? "animate-shake" : ""
+                      }`}
+                    onClick={() => handleAddWishList(product)}
+                  >
+                    {isWished ? (
+                      <FaHeart size={18} className="text-red-500" />
+                    ) : (
+                      <FaRegHeart size={18} className="text-red-500" />
+                    )}
                   </button>
                 </div>
 

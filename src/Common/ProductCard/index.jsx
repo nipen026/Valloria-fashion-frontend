@@ -33,14 +33,33 @@
 
 // export default ProductCard;
 
-import React from 'react';
-import { FaRegHeart } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { ADD_WISHLIST } from '../../api/post';
+import { toast } from 'react-toastify';
 
 const ProductCard = ({ product }) => {
   const variant = product.variants?.[0] || {};
+  const [isWished, setIsWished] = useState(false);
+  const [shake, setShake] = useState(false);
   const navigate = useNavigate()
-
+  const handleAddWishList = (product) => {
+    const bodyData = {
+      productId: product?.id,
+    };
+    ADD_WISHLIST(bodyData)
+      .then((res) => {
+        toast("Added In Wishlist");
+        setIsWished(true);
+        setShake(true);
+        setTimeout(() => setShake(false), 500); // reset shake after animation
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err.response.data.message);
+      });
+  };
   return (
     <div
       key={variant.id}
@@ -49,8 +68,16 @@ const ProductCard = ({ product }) => {
     >
       {/* Wishlist Icon */}
       <div className="absolute top-[-40px] left-4 group-hover:top-4 transition-all duration-300 z-10">
-        <button className="bg-white p-2 rounded-full shadow hover:scale-105">
-          <FaRegHeart size={18} className="text-red-500" />
+        <button
+          className={`bg-white p-2 rounded-full shadow hover:scale-105 transition-transform ${shake ? "animate-shake" : ""
+            }`}
+          onClick={() => handleAddWishList(product)}
+        >
+          {isWished ? (
+            <FaHeart size={18} className="text-red-500" />
+          ) : (
+            <FaRegHeart size={18} className="text-red-500" />
+          )}
         </button>
       </div>
 

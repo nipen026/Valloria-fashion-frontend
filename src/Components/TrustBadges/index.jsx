@@ -29,14 +29,15 @@ const TrustBadges = () => {
     <div className=" bg-gray-100 ">
       <div className='container mx-auto py-8 px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6'>
         {badges.map((badge, idx) => (
-        <div key={idx} className="flex items-start gap-3">
-          {badge.icon}
-          <div>
-            <p className="text-sm font-semibold text-gray-900">{badge.title}</p>
-            <p className="text-sm text-gray-500">{badge.subtitle}</p>
+          <div key={idx} className="flex items-start gap-3" data-aos="fade-left"
+            data-aos-delay={idx * 100}>
+            {badge.icon}
+            <div>
+              <p className="text-sm font-semibold text-gray-900">{badge.title}</p>
+              <p className="text-sm text-gray-500">{badge.subtitle}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
       </div>
     </div>
   );

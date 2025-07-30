@@ -45,20 +45,22 @@ const CategoryGrid = ({ title, items }) => (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {items.map((item, index) => (
                 <Link to={`/productListing?subCategory=${item}`}>
-                <div
-                    key={index}
-                    className="flex flex-col items-center text-center transition-transform hover:scale-105"
-                    
-                >
-                    <div className="w-28 h-28 sm:w-32 sm:h-32 bg-gray-100 rounded-full overflow-hidden flex items-center justify-center">
-                        <img
-                            src={imageMap[item]}
-                            alt={item}
-                            className="w-full h-full object-cover"
-                        />
+                    <div
+                        key={index}
+                        data-aos="flip-left"
+                        data-aos-delay={index * 100} // stagger animation
+                        className="flex flex-col items-center text-center transition-transform hover:scale-105 group"
+                    >
+                        <div className="w-28 h-28 sm:w-32 sm:h-32 bg-gray-100 rounded-full overflow-hidden flex items-center justify-center relative shine-container">
+                            <img
+                                src={imageMap[item]}
+                                alt={item}
+                                className="w-full h-full object-cover group-hover:shine"
+                            />
+                            <div className="shine-effect" />
+                        </div>
+                        <p className="mt-2 text-sm font-medium">{item}</p>
                     </div>
-                    <p className="mt-2 text-sm font-medium">{item}</p>
-                </div>
                 </Link>
             ))}
         </div>

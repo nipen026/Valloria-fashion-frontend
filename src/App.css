@@ -31,3 +31,39 @@
 .animate-shake {
   animation: shake 0.6s ease;
 }
+.shine-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  animation: shineMove 2s infinite;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.group-hover .shine-effect {
+  opacity: 1;
+}
+
+@keyframes shineMove {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+}

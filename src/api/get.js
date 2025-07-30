@@ -60,6 +60,18 @@ export const GET_MY_ACCOUNT = (id) => {
       .catch((err) => reject(err));
   });
 };
+export const GET_WISHLIST = () => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${base_url}wishlist`,{
+        headers:{
+            Authorization:`Bearer ${token}`
+        }
+      })
+      .then((res) => resolve(res))
+      .catch((err) => reject(err));
+  });
+};
 export const GET_SEARCH_DATA = (query) => {
   return new Promise((resolve, reject) => {
     axios
