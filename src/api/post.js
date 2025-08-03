@@ -45,6 +45,30 @@ export const ADD_WISHLIST = (data) =>{
       .catch((err) => reject(err));
   });
 }
+export const ADD_ADDRESS = (data) =>{
+    return new Promise((resolve, reject) => {
+    axios
+      .post(`${base_url}addresses/add`,data,{
+        headers:{
+            Authorization:`Bearer ${token}`
+        }
+      })
+      .then((res) => resolve(res))
+      .catch((err) => reject(err));
+  });
+}
+export const ADD_ORDER = (data) =>{
+    return new Promise((resolve, reject) => {
+    axios
+      .post(`${base_url}orders/addOrder`,data,{
+        headers:{
+            Authorization:`Bearer ${token}`
+        }
+      })
+      .then((res) => resolve(res))
+      .catch((err) => reject(err));
+  });
+}
 
 
 

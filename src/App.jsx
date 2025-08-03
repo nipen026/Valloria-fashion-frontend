@@ -17,9 +17,10 @@ import ReturnShippingPolicy from "./Components/ReturnShippingPolicy";
 import AOS from 'aos';
 import 'react-toastify/dist/ReactToastify.css';
 import 'aos/dist/aos.css';
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
-   useEffect(() => {
+  useEffect(() => {
     const userPref = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -31,16 +32,16 @@ function App() {
   }, []);
 
   useEffect(() => {
-  AOS.init({
-    duration: 800,
-    once: true,
-  });
-}, []);
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
+  }, []);
   return (
     <>
-    <ToastContainer/>
-    <Routes>
-      <Route path="/" element={<Home/>}/>
+      <ToastContainer />
+      <Routes>
+        {/* <Route path="/" element={<Home/>}/>
       <Route path="/productDetails/:id" element={<ProductDetailPage/>}/>
       <Route path="/cart" element={<CartPage/>}/>
       <Route path="/shipping" element={<ShippingPage/>}/>
@@ -51,9 +52,57 @@ function App() {
       <Route path="/wishlist" element={<WishlistPage />} />
       <Route path="/account" element={<MyAccount/>}/>
       <Route path="/login/success" element={<LoginSuccess />} />
-      <Route path="/returnPolicy" element={<ReturnShippingPolicy />} />
-    
-    </Routes>
+      <Route path="/returnPolicy" element={<ReturnShippingPolicy />} /> */}
+        <Route path="/" element={<Home />} />
+        <Route path="/productDetails/:id" element={<ProductDetailPage />} />
+        <Route path="/productListing" element={<ProductListing />} />
+        <Route path="/signin" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login/success" element={<LoginSuccess />} />
+        <Route path="/returnPolicy" element={<ReturnShippingPolicy />} />
+
+        {/* Protected Routes below */}
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <CartPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/shipping"
+          element={
+            <ProtectedRoute>
+              <ShippingPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/track"
+          element={
+            <ProtectedRoute>
+              <TrackOrderPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            <ProtectedRoute>
+              <WishlistPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/account"
+          element={
+            <ProtectedRoute>
+              <MyAccount />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
     </>
   );
 }

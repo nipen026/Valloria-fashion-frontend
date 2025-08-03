@@ -19,7 +19,7 @@ const Header = () => {
   const userMenuRef = useRef(null);
   const token = localStorage.getItem('access-token');
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     getCart();
     const handleClickOutside = (event) => {

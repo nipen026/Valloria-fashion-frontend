@@ -80,3 +80,11 @@ export const GET_SEARCH_DATA = (query) => {
       .catch((err) => reject(err));
   });
 };
+export const GET_COUPONS = () => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${base_url}coupons/getAllCoupon`)
+      .then((res) => resolve(res))
+      .catch((err) => reject(err));
+  });
+};
