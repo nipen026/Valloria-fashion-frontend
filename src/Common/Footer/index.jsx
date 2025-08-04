@@ -8,7 +8,7 @@ const Footer = () => {
 
         {/* About */}
         <div>
-          <h4 className="font-semibold text-lg mb-4">About Valloria Fashion</h4>
+          <h4 className="font-semibold text-lg mb-4">About Vigo<span className='text-[#e5ac4d]'>Bee</span></h4>
           <p className="text-sm text-gray-200 dark:text-gray-400">
             Elevating men's and woman's fashion with premium quality clothing since 2023.
           </p>
@@ -43,7 +43,7 @@ const Footer = () => {
             </li>
             <li className="flex items-center gap-2">
               <FaEnvelope />
-              contact@voguevastra.com
+              info@vigobee.com
             </li>
             <li className="flex items-center gap-2">
               <FaPhone />
@@ -55,7 +55,7 @@ const Footer = () => {
 
       {/* Bottom */}
       <div className="mt-10 border-t border-white/20 dark:border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between text-sm px-4">
-        <p className="text-gray-300">&copy; 2024 Valloria Fashion. All rights reserved.</p>
+        <p className="text-gray-300">&copy; 2024 Vigo<span className='text-[#e5ac4d]'>Bee</span>. All rights reserved.</p>
         <div className="flex gap-4 mt-4 md:mt-0 text-gray-200">
           <a href="#"><FaFacebookF /></a>
           <a href="#"><FaTwitter /></a>

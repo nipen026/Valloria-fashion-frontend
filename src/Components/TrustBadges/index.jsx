@@ -4,22 +4,22 @@ import { FaShippingFast, FaStar, FaCheckCircle, FaCreditCard } from 'react-icons
 const TrustBadges = () => {
   const badges = [
     {
-      icon: <FaShippingFast size={24} className="text-emerald-800" />,
+      icon: <FaShippingFast size={24} className="text-primary" />,
       title: 'Free Shipping',
       subtitle: 'On orders over ₹1000',
     },
     {
-      icon: <FaStar size={24} className="text-emerald-800" />,
+      icon: <FaStar size={24} className="text-primary" />,
       title: 'Premium Quality',
       subtitle: 'Guaranteed products',
     },
     {
-      icon: <FaCheckCircle size={24} className="text-emerald-800" />,
+      icon: <FaCheckCircle size={24} className="text-primary" />,
       title: 'No Returns',
       subtitle: '30-day Replacement Policy',
     },
     {
-      icon: <FaCreditCard size={24} className="text-emerald-800" />,
+      icon: <FaCreditCard size={24} className="text-primary" />,
       title: 'Secure Payment',
       subtitle: 'Protected by SSL',
     },

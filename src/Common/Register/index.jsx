@@ -49,8 +49,8 @@ const Register = () => {
             {/* Left Banner */}
             <div className="w-1/2 bg-cover hidden md:block" style={{ backgroundImage: `url(${loginBg})` }}>
                 <div className="bg-black bg-opacity-40 h-full flex flex-col items-center justify-center text-center px-4">
-                    <h1 className="text-white text-5xl font-extrabold mb-4 animate-typing whitespace-nowrap overflow-hidden border-r-4 border-white pr-4">
-                        Join Velloria Fashion
+                    <h1 className="text-white text-5xl font-extrabold mb-4 animate-typing whitespace-nowrap overflow-hidden">
+                        Join Vigo<span className='text-yellow'>&nbsp;Bee</span>
                     </h1>
                     <p className="text-white text-lg max-w-md">
                         Create your account and explore timeless styles.
@@ -62,7 +62,7 @@ const Register = () => {
             <div className="w-full md:w-1/2 flex items-center justify-center p-8">
                 <div className="w-full max-w-md">
                     <h2 className="text-3xl text-center font-bold mb-6">
-                        Register on <span className="text-primary">Velloria Fashion</span>
+                        Register on <span className="text-primary">Vigo<span className='text-yellow'>&nbsp;Bee</span></span>
                     </h2>
 
                     <button
@@ -134,7 +134,7 @@ const Register = () => {
                     </form>
 
                     <p className="text-sm text-gray-600 mt-4 text-center">
-                        Already have an account? <a href="/signin" className="text-primary hover:underline">Login</a>
+                        Already have an account? <a href="/signin" className="text-yellow hover:underline">Login</a>
                     </p>
                 </div>
             </div>

@@ -88,3 +88,11 @@ export const GET_COUPONS = () => {
       .catch((err) => reject(err));
   });
 };
+export const GET_REVIEW_BY_PRODUCT = (id) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${base_url}reviews/${id}`)
+      .then((res) => resolve(res))
+      .catch((err) => reject(err));
+  });
+};

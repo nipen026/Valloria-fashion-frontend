@@ -63,7 +63,7 @@ const NewArrivals = () => {
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((product,index) => {
             const variant = product.variants?.[0];
             if (!variant) return null;
@@ -78,7 +78,7 @@ const NewArrivals = () => {
                 {/* Wishlist Icon */}
                 <div className="absolute top-[-40px] left-4 group-hover:top-4 transition-all duration-300 z-10">
                   <button
-                    className={`bg-white p-2 rounded-full shadow hover:scale-105 transition-transform ${shake ? "animate-shake" : ""
+                    className={`bg-white p-1 md:p-2 rounded-full shadow hover:scale-105 transition-transform ${shake ? "animate-shake" : ""
                       }`}
                     onClick={() => handleAddWishList(product)}
                   >
@@ -95,7 +95,7 @@ const NewArrivals = () => {
                   onClick={() => navigate(`productDetails/${product.id}`)}
                   src={variant.images?.[0]}
                   alt={product.productName}
-                  className="w-full h-64 sm:h-72 md:h-80 object-cover cursor-pointer transition-transform group-hover:scale-105"
+                  className="w-full h-58 sm:h-72 md:h-80 md:object-cover object-contain cursor-pointer transition-transform group-hover:scale-105"
                 />
 
                 <div className="p-4 space-y-2">
@@ -109,7 +109,7 @@ const NewArrivals = () => {
 
                   {/* Price */}
                   <p
-                    className="text-sm text-primary font-semibold flex items-center gap-4 dark:text-gray-300"
+                    className="text-sm text-primary font-semibold flex items-center gap-1 md:gap-4 dark:text-gray-300"
                     onClick={() => navigate(`productDetails/${product.id}`)}
                   >
                     ₹ {variant.salePrice}

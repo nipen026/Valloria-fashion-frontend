@@ -62,8 +62,8 @@ const Login = () => {
             {/* Left Banner */}
             <div className="w-1/2 bg-cover hidden md:block" style={{ backgroundImage: `url(${loginBg})` }}>
                 <div className="bg-black bg-opacity-40 h-full flex flex-col items-center justify-center text-center px-4">
-                    <h1 className="text-white text-5xl font-extrabold mb-4 animate-typing whitespace-nowrap overflow-hidden border-r-4 border-white pr-4">
-                        Welcome to Velloria Fashion
+                    <h1 className="text-white text-5xl font-extrabold mb-4 animate-typing whitespace-nowrap overflow-hidden ">
+                        Welcome to Vigo<span className='text-yellow'>&nbsp;Bee</span>
                     </h1>
                     <p className="text-white text-lg max-w-md">
                         Redefining style. One outfit at a time.
@@ -75,7 +75,7 @@ const Login = () => {
             <div className="w-full md:w-1/2 flex items-center justify-center p-8">
                 <div className="w-full max-w-md">
                     <h2 className="text-3xl text-center font-bold mb-6">
-                        Login to <span className="text-primary">Velloria Fashion</span>
+                        Login to <span className="text-primary">Vigo<span className='text-yellow'>&nbsp;Bee</span></span>
                     </h2>
 
                     {error && (
@@ -135,7 +135,7 @@ const Login = () => {
                     </form>
 
                     <p className="text-sm text-gray-600 mt-4 text-center">
-                        Don’t have an account? <a href="/register" className="text-primary hover:underline">Sign Up</a>
+                        Don’t have an account? <a href="/register" className="text-yellow hover:underline">Sign Up</a>
                     </p>
                 </div>
             </div>

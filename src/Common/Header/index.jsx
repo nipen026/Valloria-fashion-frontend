@@ -1,27 +1,32 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { FaSearch, FaUser, FaShoppingBag, FaTruck, FaHeart } from 'react-icons/fa';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/vigobee.png';
 import { IoMdExit } from 'react-icons/io';
 import { Link, useNavigate } from 'react-router-dom';
 import { GET_ALL_CART, GET_SEARCH_DATA } from '../../api/get';
 import { InfinitySpin, Vortex } from 'react-loader-spinner';
+import { useCart } from '../../Context/CartContext';
 
 
 const Header = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
-  const [cartData, setCartData] = useState([]);
+  // const [cartData, setCartData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { cartData,getCart } = useCart();
 
+  useEffect(() => {
+    getCart(); // fetch cart data on load
+  }, []);
   const userMenuRef = useRef(null);
   const token = localStorage.getItem('access-token');
   const navigate = useNavigate();
-  
+
   useEffect(() => {
-    getCart();
+
     const handleClickOutside = (event) => {
       if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
         setShowUserMenu(false);
@@ -36,10 +41,6 @@ const Header = () => {
     window.location.reload();
   };
 
-  const getCart = async () => {
-    const res = await GET_ALL_CART();
-    setCartData(res.data || []);
-  };
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
@@ -77,8 +78,7 @@ const Header = () => {
       <nav className="flex justify-between items-center px-6 py-4">
         <Link to={'/'}>
           <div className="flex items-center gap-2 text-primary font-bold text-lg dark:text-secondary">
-            <img src={logo} alt='logo' className='w-[60px] object-contain cursor-pointer' />
-            <span className="block md:hidden text-white text-xl font-extrabold">Velloria Fashion</span>
+            <img src={logo} alt='logo' className='w-[50px]  object-contain cursor-pointer' />
           </div>
         </Link>
 
@@ -91,7 +91,7 @@ const Header = () => {
 
         <div className="flex gap-4 items-center dark:text-secondary relative">
           <FaSearch onClick={() => setShowSearch(!showSearch)} className="cursor-pointer hover:text-primary" />
-          <FaHeart onClick={()=>navigate('/wishlist')} className="cursor-pointer hover:text-primary" />
+          <FaHeart onClick={()=>navigate('/wishlist')} className="cursor-pointer text-red-600 hover:text-red-500" />
 
           {token ? (
             <>
@@ -119,7 +119,7 @@ const Header = () => {
               </Link> : ''}
             </>
           ) : (
-            <a href="/signin" className="text-sm px-4 py-1 rounded border border-primary text-primary hover:bg-primary hover:text-white">Login</a>
+            <a href="/signin" className="text-sm px-4 py-1 rounded font-semibold border border-primary hover:text-primary hover:bg-white bg-primary text-white transition-all ease-in">Login</a>
           )}
         </div>
       </nav>
