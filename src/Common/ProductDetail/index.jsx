@@ -288,7 +288,7 @@ const ProductDetail = () => {
             {reviewPopup && (
                 <div className="fixed inset-0 z-50 bg-black bg-opacity-70 flex items-center justify-center backdrop-blur-sm transition-opacity">
                     <div className="relative max-w-3xl w-full mx-auto p-4">
-                        <img src={reviewImage} alt="Zoomed" className="w-full h-[400px] rounded-lg shadow-xl animate-scaleIn" />
+                        <img src={reviewImage} alt="Zoomed" className="w-full h-[400px] rounded-lg object-contain shadow-xl animate-scaleIn" />
                         <button
                             onClick={() => setReviewPopup(false)}
                             className="absolute top-4 right-4 text-black hover:bg-opacity-80 rounded-full p-2"
