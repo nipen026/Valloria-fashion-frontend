@@ -99,7 +99,7 @@ const ReturnShippingPolicy = () => {
 
       <AccordionSection title="Contact Us">
         <p>
-          For any questions related to your return or shipping, feel free to contact us at <strong className="text-primary">support@yourbrand.com</strong> or WhatsApp us at <strong>+91-XXXXXXXXXX</strong>.
+          For any questions related to your return or shipping, feel free to contact us at <strong className="text-primary">contactus@vigobee.com</strong> or WhatsApp us at <strong>+91-XXXXXXXXXX</strong>.
         </p>
       </AccordionSection>
     </div>

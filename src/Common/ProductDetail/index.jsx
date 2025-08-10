@@ -90,7 +90,11 @@ const ProductDetail = () => {
     };
 
     const handleAddToWishlist = async () => {
-
+        const token = localStorage.getItem('access-token')
+        if (!token) {
+            navigate('/signin');
+            return ;
+        }
         const bodyData = {
             productId: product.id,
         }
@@ -149,7 +153,7 @@ const ProductDetail = () => {
                                 <img src={mainImage} alt="Zoomed" className="w-full h-auto rounded-lg shadow-xl animate-scaleIn" />
                                 <button
                                     onClick={() => setIsZoomed(false)}
-                                    className="absolute top-4 right-4 text-black hover:bg-opacity-80 rounded-full p-2"
+                                    className="absolute top-6 right-6 text-white bg-primary w-[40px] h-[40px] hover:bg-opacity-80 rounded-full"
                                 >
                                     ✕
                                 </button>
@@ -205,6 +209,7 @@ const ProductDetail = () => {
                         </div>
 
                         {/* Size */}
+                        {selectedVariant.size.length > 0  ?
                         <div className="mb-6">
                             <h4 className="font-medium mb-2">Size</h4>
                             <div className="flex flex-wrap gap-2">
@@ -221,7 +226,7 @@ const ProductDetail = () => {
                                     </button>
                                 ))}
                             </div>
-                        </div>
+                        </div> : ''}
 
                         {/* Buttons */}
                         <div className="flex flex-col sm:flex-row gap-4 mb-6">
@@ -233,10 +238,14 @@ const ProductDetail = () => {
                             </button>
                             <button
                                 onClick={handleAddToWishlist}
-                                className="border px-6 py-3 rounded w-full dark:border-white border-black flex items-center justify-center gap-2"
+                                className="group border px-6 py-3 rounded w-full dark:border-white border-black hover:bg-primary hover:text-white flex items-center justify-center gap-2"
                             >
-                                <FaHeart /> ADD TO WISHLIST
+                                <span className="text-black group-hover:text-pink-500 dark:text-white">
+                                    <FaHeart />
+                                </span>
+                                ADD TO WISHLIST
                             </button>
+
                         </div>
 
                         {/* Description */}
@@ -287,11 +296,11 @@ const ProductDetail = () => {
             </div>
             {reviewPopup && (
                 <div className="fixed inset-0 z-50 bg-black bg-opacity-70 flex items-center justify-center backdrop-blur-sm transition-opacity">
-                    <div className="relative max-w-3xl w-full mx-auto p-4">
-                        <img src={reviewImage} alt="Zoomed" className="w-full h-[400px] rounded-lg object-contain shadow-xl animate-scaleIn" />
+                    <div className="relative max-w-3xl  mx-auto p-4">
+                        <img src={reviewImage} alt="Zoomed" className="w-full max-h-[400px] h-auto rounded-lg object-contain shadow-xl animate-scaleIn" />
                         <button
                             onClick={() => setReviewPopup(false)}
-                            className="absolute top-4 right-4 text-black hover:bg-opacity-80 rounded-full p-2"
+                            className="absolute top-4 right-4 text-white bg-primary w-[40px] h-[40px] hover:bg-opacity-80 rounded-full "
                         >
                             ✕
                         </button>

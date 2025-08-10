@@ -295,7 +295,7 @@ const Shipping = () => {
   const [couponCode, setCouponCode] = useState('');
   const [discount, setDiscount] = useState(0);
   const [couponError, setCouponError] = useState('');
-  const [couponsListData,setCouponsListData] = useState([])
+  const [couponsListData, setCouponsListData] = useState([])
   const navigate = useNavigate();
 
   const shipping = 12.0;
@@ -308,9 +308,16 @@ const Shipping = () => {
   });
 
   const subtotal = orderItems.reduce((acc, item) => {
-    const matchedVariant = item.Product?.variants?.find(
-      v => v.color === item.color && v.size?.includes(item.size)
-    );
+    const matchedVariant = item.Product?.variants?.find(v => {
+      if (item.size) {
+        // Match by color and size
+        return v.color === item.color && v.size === item.size;
+      } else {
+        // Match only by color
+        return v.color === item.color;
+      }
+    });
+
     const price = matchedVariant?.salePrice || 0;
     return acc + price * item.quantity;
   }, 0);
@@ -318,14 +325,14 @@ const Shipping = () => {
   const total = subtotal - discount + shipping + tax;
 
 
-  useEffect(()=>{
-    GET_COUPONS().then((res)=>{
+  useEffect(() => {
+    GET_COUPONS().then((res) => {
       console.log(res);
       setCouponsListData(res.data.coupons)
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err);
     })
-  },[])
+  }, [])
 
 
 
@@ -521,17 +528,24 @@ const Shipping = () => {
           <h3 className="text-lg font-semibold mb-4 text-primary">Order Summary</h3>
           <div className="space-y-4 text-sm">
             {orderItems.map((item, i) => {
-              const matchedVariant = item.Product?.variants?.find(
-                v => v.color === item.color && v.size?.includes(item.size)
-              );
+              const matchedVariant = item.Product?.variants?.find(v => {
+                if (item.size) {
+                  // Match color + size (using includes)
+                  return v.color === item.color && v.size?.includes(item.size);
+                } else {
+                  // Match only color
+                  return v.color === item.color;
+                }
+              });
               const image = matchedVariant?.images?.[0] || '';
               const price = matchedVariant?.salePrice || 0;
               return (
                 <div key={i} className="flex items-center gap-4">
-                  <img src={image} alt={item.Product?.productName} className="w-16 h-16 object-cover rounded" />
+                  <img src={image} alt={item.Product?.productName} className="w-16 h-16 object-contain  rounded" />
                   <div className="flex-1">
                     <h4 className="font-medium">{item.Product?.productName}</h4>
-                    <p className="text-xs text-gray-600 dark:text-gray-400">Size: {item.size}</p>
+                    {item.size ?
+                      <p className="text-xs text-gray-600 dark:text-gray-400">Size: {item.size}</p> : ''}
                     <div className="flex items-center gap-2">
                       <span className="text-xs text-gray-600 dark:text-gray-400">Color:</span>
                       <div className="w-4 h-4 rounded-full border border-gray-300" style={{ backgroundColor: item.color }} />
