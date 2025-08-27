@@ -151,8 +151,8 @@ const ProductDetail = () => {
 
                     {isZoomed && (
                         <div className="fixed inset-0 z-50 bg-black bg-opacity-70 flex items-center justify-center backdrop-blur-sm transition-opacity">
-                            <div className="relative max-w-3xl w-full mx-auto p-4">
-                                <img src={mainImage} alt="Zoomed" className="w-full h-auto rounded-lg shadow-xl animate-scaleIn" />
+                            <div className="relative bg-white max-w-3xl w-full mx-auto p-4">
+                                <img src={mainImage} alt="Zoomed" className="w-full h-[500px] object-contain rounded-lg shadow-xl animate-scaleIn" />
                                 <button
                                     onClick={() => setIsZoomed(false)}
                                     className="absolute top-6 right-6 text-white bg-primary w-[40px] h-[40px] hover:bg-opacity-80 rounded-full"

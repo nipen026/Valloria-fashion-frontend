@@ -6,7 +6,7 @@ const TrustBadges = () => {
     {
       icon: <FaShippingFast size={24} className="text-primary" />,
       title: 'Free Shipping',
-      subtitle: 'On orders over ₹1000',
+      subtitle: 'On orders over ₹999',
     },
     {
       icon: <FaStar size={24} className="text-primary" />,
@@ -16,7 +16,7 @@ const TrustBadges = () => {
     {
       icon: <FaCheckCircle size={24} className="text-primary" />,
       title: 'No Returns',
-      subtitle: '30-day Replacement Policy',
+      subtitle: '7-day Replacement Policy',
     },
     {
       icon: <FaCreditCard size={24} className="text-primary" />,

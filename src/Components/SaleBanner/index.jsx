@@ -1,5 +1,5 @@
 import React from 'react';
-import bannerGif from '../../assets/fashion sale.gif';
+import bannerGif from '../../assets/uper-banner.gif';
 
 const SaleBanner = () => {
   return (
@@ -16,7 +16,7 @@ const SaleBanner = () => {
             <img
               src={bannerGif}
               alt="Mega Sale Banner"
-              className="w-full h-48 sm:h-64 md:h-96 lg:h-[500px] object-cover"
+              className="w-full h-48 sm:h-auto md:h-auto lg:h-auto object-contain"
             />
           </div>
         </div>

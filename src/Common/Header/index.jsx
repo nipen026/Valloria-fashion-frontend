@@ -16,7 +16,7 @@ const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { cartData,getCart } = useCart();
+  const { cartData, getCart } = useCart();
 
   useEffect(() => {
     getCart(); // fetch cart data on load
@@ -69,9 +69,11 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-secondary dark:bg-black shadow">
       <div className="bg-primary text-secondary text-sm py-2 overflow-hidden">
-        <div className="animate-marquee whitespace-nowrap flex items-center justify-center gap-2">
-          <FaTruck className="inline-block ml-4" />
-          <span>Free Shipping on Orders Over ₹1000</span>
+        <div className="animate-marquee whitespace-nowrap flex items-center justify-end gap-6">
+          {/* <FaTruck className="inline-block ml-4" /> */}
+          <span className="font-medium">🚚 Free Shipping on Orders Over ₹999</span>
+          <span className="font-medium">✨ New Collection Launching</span>
+          <span className="font-medium">🛍️ Shop Women’s Wear – Vigobee</span>
         </div>
       </div>
 
@@ -91,7 +93,7 @@ const Header = () => {
 
         <div className="flex gap-4 items-center dark:text-secondary relative">
           <FaSearch onClick={() => setShowSearch(!showSearch)} className="cursor-pointer hover:text-primary" />
-          <FaHeart onClick={()=>navigate('/wishlist')} className="cursor-pointer text-red-600 hover:text-red-500" />
+          <FaHeart onClick={() => navigate('/wishlist')} className="cursor-pointer text-red-600 hover:text-red-500" />
 
           {token ? (
             <>
@@ -112,14 +114,14 @@ const Header = () => {
                 )}
               </div>
               {cartData.length > 0 ?
-              <Link to={cartData.length > 0 ? '/cart' : '/'}>
-                <div className="relative">
-                  <FaShoppingBag className="cursor-pointer hover:text-primary" />
-                  <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-semibold w-5 h-5 flex items-center justify-center rounded-full">
-                    {cartData.length}
-                  </span>
-                </div>
-              </Link> : ''}
+                <Link to={cartData.length > 0 ? '/cart' : '/'}>
+                  <div className="relative">
+                    <FaShoppingBag className="cursor-pointer hover:text-primary" />
+                    <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-semibold w-5 h-5 flex items-center justify-center rounded-full">
+                      {cartData.length}
+                    </span>
+                  </div>
+                </Link> : ''}
             </>
           ) : (
             <a href="/signin" className="text-sm px-4 py-1 rounded font-semibold border border-primary hover:text-primary hover:bg-white bg-primary text-white transition-all ease-in">Login</a>

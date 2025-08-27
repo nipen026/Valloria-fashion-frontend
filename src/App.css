@@ -1,12 +1,13 @@
-/* @keyframes marquee {
-  0% { transform: translateX(100%); }
+@keyframes marquee {
+  0%   { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
 }
 
 .animate-marquee {
-  display: inline-block;
-  animation: marquee 15s linear infinite;
-} */
+  display: inline-flex;
+  min-width: 100%;
+  animation: marquee 20s linear infinite;
+}
 
   @keyframes scaleIn {
     0% {

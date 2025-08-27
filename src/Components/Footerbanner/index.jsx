@@ -1,5 +1,5 @@
 import React from 'react';
-import bannerGif from '../../assets/footer-banner.png';
+import bannerGif from '../../assets/launching.gif';
 
 const FooterBanner = () => {
   return (
