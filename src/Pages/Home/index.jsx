@@ -15,7 +15,7 @@ const Home= () =>{
         <>
         <Header/>
         <Banner/>
-        <Categories/>
+        {/* <Categories/> */}
         <SaleBanner/>
         {/* <FeaturedCategories/> */}
         <NewArrivals/>
