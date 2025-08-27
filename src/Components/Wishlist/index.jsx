@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FiHeart, FiShoppingCart, FiTrash2 } from 'react-icons/fi';
 import { GET_WISHLIST } from '../../api/get';
+import wishlistImage from '../../assets/wishlisht.jpg'
 import { DELETE_WISHLIST } from '../../api/post';
 import { useNavigate } from 'react-router-dom';
 
@@ -45,7 +46,7 @@ const Wishlist = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
       {wishlistItems.length === 0 ? (
-        <div className="text-center text-gray-500">Your wishlist is empty 😔</div>
+        <div className="text-center text-gray-500"><img src={wishlistImage} className='w-full h-[500px] object-contain'/></div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {wishlistItems.map((item) => (

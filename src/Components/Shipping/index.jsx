@@ -298,7 +298,7 @@ const Shipping = () => {
   const [couponsListData, setCouponsListData] = useState([])
   const navigate = useNavigate();
 
-  const shipping = 12.0;
+  const shipping = 60.0;
   const tax = 38.99;
 
   const currencyFormatter = new Intl.NumberFormat('en-IN', {
@@ -319,15 +319,15 @@ const Shipping = () => {
     });
 
     const price = matchedVariant?.salePrice || 0;
-    console.log(item.Product?.variants,"price");
-    
+    console.log(item.Product?.variants, "price");
+
     return acc + price * item.quantity;
   }, 0);
 
-  const total = subtotal - discount + shipping + tax;
+  const total = subtotal - discount + shipping ;
 
-  console.log(orderItems,subtotal,total,"total");
-  
+  console.log(orderItems, subtotal, total, "total");
+
   useEffect(() => {
     GET_COUPONS().then((res) => {
       console.log(res);
@@ -354,7 +354,7 @@ const Shipping = () => {
         key: import.meta.env.VITE_RAZORPAY_KEY_ID,
         amount: data.order.amount,
         currency: 'INR',
-        name: 'Valloria Fashion',
+        name: 'Vigobee',
         description: 'Order Payment',
         order_id: data.order.id,
         handler: async function (response) {
@@ -374,7 +374,7 @@ const Shipping = () => {
         },
         prefill: {
           name: formData.firstName + ' ' + formData.lastName,
-          email: 'customer@example.com',
+          email: 'info@vigobee.com',
           contact: formData.phone,
         },
         theme: { color: '#0a4b3c' },
@@ -416,41 +416,43 @@ const Shipping = () => {
 
   const handlePlaceOrder = () => {
     if (!validateForm()) return;
-    if (formData.paymentMethod === 'card' || formData.paymentMethod === 'upi') handleRazorpayPayment();
+    if (formData.paymentMethod === 'card' || formData.paymentMethod === 'upi') { handleRazorpayPayment(); handleOrderData() }
     else {
-      const bodyData = {
-        fullName: `${formData.firstName} ${formData.lastName}`,
-        phone: formData.phone,
-        pincode: formData.zip,
-        state: formData.state,
-        city: formData.city,
-        addressLine: formData.address,
-        isDefault: isSave
-      };
-
-      ADD_ADDRESS(bodyData).then((res) => {
-        console.log(res);
-      }).catch((err) => {
-        console.log(err);
-      });
-
-      const orderData = {
-        shippingAddress: `${formData.address} - ${formData.city} - ${formData.state} - ${formData.zip} , ${formData.firstName} - ${formData.lastName} , ${formData.phone}`,
-        paymentStatus:formData.paymentMethod,
-        totalAmount:total,
-      };
-      console.log(orderData,"orderData");
-      
-      ADD_ORDER(orderData).then((res) => {
-        console.log(res);
-        navigate('/track');
-      }).catch((err) => {
-        console.log(err);
-      });
+      handleOrderData()
     }
   };
 
+  const handleOrderData = () => {
+    const bodyData = {
+      fullName: `${formData.firstName} ${formData.lastName}`,
+      phone: formData.phone,
+      pincode: formData.zip,
+      state: formData.state,
+      city: formData.city,
+      addressLine: formData.address,
+      isDefault: isSave
+    };
 
+    ADD_ADDRESS(bodyData).then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err);
+    });
+
+    const orderData = {
+      shippingAddress: `${formData.address} - ${formData.city} - ${formData.state} - ${formData.zip} , ${formData.firstName} - ${formData.lastName} , ${formData.phone}`,
+      paymentStatus: formData.paymentMethod,
+      totalAmount: total,
+    };
+    console.log(orderData, "orderData");
+
+    ADD_ORDER(orderData).then((res) => {
+      console.log(res);
+      navigate('/track');
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
   return (
     <div className="min-h-auto bg-secondary dark:bg-black text-black dark:text-white">
       {/* Progress bar */}
@@ -543,8 +545,8 @@ const Shipping = () => {
                   return v.color === item.color;
                 }
               });
-              console.log(matchedVariant,"matchedVariant");
-              
+              console.log(matchedVariant, "matchedVariant");
+
               const image = matchedVariant?.images?.[0] || '';
               const price = matchedVariant?.salePrice || 0;
               return (
@@ -568,7 +570,7 @@ const Shipping = () => {
             {/* Coupon Section */}
             <div className="mt-6">
               {couponsListData.length > 0 &&
-              <label className="text-sm font-medium block mb-2">Available Coupons</label>}
+                <label className="text-sm font-medium block mb-2">Available Coupons</label>}
 
               <div className="space-y-3">
                 {couponsListData.map((c) => {
@@ -625,7 +627,7 @@ const Shipping = () => {
             <div className="flex justify-between"><span>Subtotal</span><span>{currencyFormatter.format(subtotal)}</span></div>
             {discount > 0 && <div className="flex justify-between text-green-600"><span>Discount</span><span>-{currencyFormatter.format(discount)}</span></div>}
             <div className="flex justify-between"><span>Shipping</span><span>{currencyFormatter.format(shipping)}</span></div>
-            <div className="flex justify-between"><span>Tax</span><span>{currencyFormatter.format(tax)}</span></div>
+            {/* <div className="flex justify-between"><span>Tax</span><span>{currencyFormatter.format(tax)}</span></div> */}
             <div className="flex justify-between font-bold text-lg mt-2">
               <span>Total</span>
               <span className="text-primary">{currencyFormatter.format(total)}</span>

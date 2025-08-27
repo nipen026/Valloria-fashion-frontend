@@ -143,7 +143,7 @@ const TrackOrder = () => {
 
   return (
     <div className=" bg-secondary dark:bg-black text-black dark:text-white px-4 py-10">
-      <h1 className="text-2xl font-bold text-center mb-10">Track Your Orders</h1>
+      <h1 className="text-2xl font-bold text-center mb-10">My Orders</h1>
 
       {orders.map((order) => {
         const currentStep = getStepIndex(order.status);
@@ -259,24 +259,30 @@ const TrackOrder = () => {
       })}
 
       {/* Support Section */}
-      <div className="max-w-5xl mx-auto bg-gray-100 dark:bg-zinc-800 p-6 rounded-lg shadow text-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div>
-          <p className="font-medium text-black dark:text-white flex items-center gap-2 mb-1">
-            Need Help <FaQuestion className="text-red-500" />
-          </p>
-          <p className="text-gray-600 dark:text-gray-400">
-            Our customer service team is here to assist you with any questions.
-          </p>
-        </div>
-        <div className="flex gap-3">
-          <button className="bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90">
-            Contact Support
-          </button>
-          <button className="border px-4 py-2 rounded text-black dark:text-white dark:border-white">
-            View FAQs
-          </button>
-        </div>
-      </div>
+     <div className="max-w-5xl mx-auto bg-gray-100 dark:bg-zinc-800 p-6 rounded-lg shadow text-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+  <div>
+    <p className="font-medium text-black dark:text-white flex items-center gap-2 mb-1">
+      Need Help <FaQuestion className="text-red-500" />
+    </p>
+    <p className="text-gray-600 dark:text-gray-400">
+      Our customer service team is here to assist you with any questions.
+    </p>
+  </div>
+  <div className="flex gap-3">
+    {/* Contact Support button redirects to email */}
+    <a href="mailto:info@vigobee.com">
+      <button className="bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90">
+        Contact Support
+      </button>
+    </a>
+
+    {/* FAQs button (kept as is, you can link to FAQ page) */}
+    {/* <button className="border px-4 py-2 rounded text-black dark:text-white dark:border-white">
+      View FAQs
+    </button> */}
+  </div>
+</div>
+
     </div>
   );
 };

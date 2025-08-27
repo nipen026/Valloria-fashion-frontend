@@ -5,21 +5,21 @@ import ProductGrid from '../../Components/ProductGrid';
 import Header from '../../Common/Header';
 import Banner from '../../Components/Banner';
 import Footer from '../../Common/Footer';
-import { GET_FILTER_PRODUCT, GET_PRODUCT } from '../../api/get';
+import { GET_FILTER_PRODUCT } from '../../api/get';
 import { useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const ProductListing = () => {
-  const [filters, setFilters] = useState({ category: [], price: [] ,size:[] , color:[] });
+  const [filters, setFilters] = useState({ category: [], price: [], size: [], color: [] });
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const location = useLocation();
 
-  
   // Fetch products from your API
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await GET_FILTER_PRODUCT(location.search) // update URL if needed
+        const response = await GET_FILTER_PRODUCT(location.search); // update URL if needed
         setProducts(response.data.products || []);
         setLoading(false);
       } catch (error) {
@@ -29,7 +29,7 @@ const ProductListing = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [location.search]);
 
   // Apply category and price filters
   const filteredProducts = products.filter((product) => {
@@ -47,30 +47,48 @@ const ProductListing = () => {
     return catMatch && priceMatch;
   });
 
+  // --- SEO Auto Generation ---
+  const seoTitle = filters.category.length
+    ? `Shop ${filters.category.join(', ')} Online | Vigobee`
+    : 'Trendy Gen-Z Clothing | Vigobee';
+
+  const seoDescription = filters.category.length
+    ? `Discover the best ${filters.category.join(', ')} for Gen-Z. Shop affordable, stylish, and trending outfits online at Vigobee.`
+    : 'Shop Gen-Z inspired fashion at Vigobee. Explore trendy shirts, t-shirts, pants, and more with affordable prices.';
+
+  const seoKeywords = [
+    ...(filters.category.length ? filters.category : ['shirts', 't-shirts', 'pants', 'fashion', 'streetwear']),
+    'gen-z clothing',
+    'trendy outfits',
+    'affordable fashion',
+    'vigobee store',
+  ].join(', ');
+
   return (
     <>
+      {/* SEO Tags */}
+      <Helmet>
+        <title>{seoTitle}</title>
+        <meta name="description" content={seoDescription} />
+        <meta name="keywords" content={seoKeywords} />
+
+        {/* Open Graph for social sharing */}
+        <meta property="og:title" content={seoTitle} />
+        <meta property="og:description" content={seoDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={window.location.href} />
+        {products[0]?.variants?.[0]?.images?.[0] && (
+          <meta property="og:image" content={products[0].variants[0].images[0]} />
+        )}
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seoTitle} />
+        <meta name="twitter:description" content={seoDescription} />
+      </Helmet>
+
       <Header />
       <Banner />
-      
-      {/* Category Tabs */}
-      {/* <div className='border-y p-3 flex justify-start container lg:gap-5 gap-3'>
-        {['Shirts', 'T-Shirts', 'Pants', 'Suits', 'Accessories'].map((cat) => (
-          <button
-            key={cat}
-            className='bg-transparent border-none text-[#4B5563] dark:text-white'
-            onClick={() =>
-              setFilters((prev) => ({
-                ...prev,
-                category: prev.category.includes(cat)
-                  ? prev.category.filter((c) => c !== cat)
-                  : [...prev.category, cat],
-              }))
-            }
-          >
-            {cat}
-          </button>
-        ))}
-      </div> */}
 
       {/* Products Section */}
       <div className="bg-secondary dark:bg-black text-black dark:text-white px-6 py-10">

@@ -64,13 +64,13 @@ const NewArrivals = () => {
 
         {/* Product Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products.map((product,index) => {
+          {products.map((product, index) => {
             const variant = product.variants?.[0];
             if (!variant) return null;
 
             return (
               <div
-               data-aos="zoom-in"
+                data-aos="zoom-in"
                 data-aos-delay={index * 100}
                 key={variant.id}
                 className="group relative bg-white dark:bg-zinc-900 rounded-xl shadow-md hover:shadow-lg overflow-hidden transition-all"
@@ -108,20 +108,30 @@ const NewArrivals = () => {
                   </h3>
 
                   {/* Price */}
-                  <p
-                    className="text-sm text-primary font-semibold flex items-center gap-1 md:gap-4 dark:text-gray-300"
-                    onClick={() => navigate(`productDetails/${product.id}`)}
+                  <div
+                    className="flex flex-wrap items-center md:gap-4 gap-2 mb-3 cursor-pointer"
+                    onClick={() => navigate(`/productDetails/${product.id}`)}
                   >
-                    ₹ {variant.salePrice}
-                    <del className="text-red-400">₹ {variant.mrp}</del>
-                    <span className="text-black font-semibold">
-                      ({Math.round(((variant.mrp - variant.salePrice) / variant.mrp) * 100)}% OFF)
+                    {/* Sale Price */}
+                    <span className="text-green-600 dark:text-green-400 text-lg font-bold">
+                      ₹ {variant.salePrice}
                     </span>
-                  </p>
+
+                    {/* MRP (strikethrough) */}
+                    <span className="text-gray-500 dark:text-gray-400 line-through text-sm">
+                      ₹ {variant.mrp}
+                    </span>
+
+                    {/* Discount Badge */}
+                    <span className="bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300 px-2 py-0.5 rounded-full text-xs font-semibold">
+                      {Math.round(((variant.mrp - variant.salePrice) / variant.mrp) * 100)}% OFF
+                    </span>
+                  </div>
+
 
                   {/* Color */}
                   <div
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-2 mb-4"
                     onClick={() => navigate(`productDetails/${product.id}`)}
                   >
                     <div
@@ -132,7 +142,7 @@ const NewArrivals = () => {
                   </div>
 
                   {/* Sizes */}
-                  <div className="flex flex-wrap gap-2">
+                  {/* <div className="flex flex-wrap gap-2">
                     {variant.size.map((sz) => (
                       <span
                         key={sz}
@@ -141,12 +151,12 @@ const NewArrivals = () => {
                         {sz}
                       </span>
                     ))}
-                  </div>
+                  </div> */}
 
                   {/* Add to Cart */}
                   <button
                     onClick={() => navigate(`productDetails/${product.id}`)}
-                    className="w-full border border-primary font-semibold text-primary py-2 rounded hover:bg-opacity-90 transition"
+                    className="w-full border border-primary font-semibold text-primary py-2 rounded hover:bg-primary hover:text-white transition"
                   >
                     Add to Cart
                   </button>

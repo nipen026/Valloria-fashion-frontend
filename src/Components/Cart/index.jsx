@@ -3,12 +3,13 @@ import { FaHeart, FaRegHeart, FaTrash } from 'react-icons/fa';
 import { GET_ALL_CART } from '../../api/get';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoClose } from 'react-icons/io5';
-import { DELETE_CART } from '../../api/post';
+import { DELETE_CART, UPDATE_CART } from '../../api/post';
 
 const Cart = () => {
-    const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
   const [subtotal, setSubtotal] = useState(0);
   const [taxTotal, setTaxTotal] = useState(0);
+  const [quantity, setQuantity] = useState();
   const [shaking, setShaking] = useState(false);
   const [moved, setMoved] = useState(false);
   const shipping = 60; // INR
@@ -80,6 +81,16 @@ const Cart = () => {
       console.error('Error deleting cart item:', error);
     }
   };
+  console.log(cartItems);
+
+  const updateCart = async (id, quantity, size, color) => {
+  try {
+    await UPDATE_CART(id, { quantity, size, color }); // API call with cart id + body
+    fetchCart(); // refresh cart after update
+  } catch (err) {
+    console.error("Error updating cart:", err);
+  }
+};
 
   const total = subtotal + shipping + taxTotal;
   return (
@@ -131,10 +142,15 @@ const Cart = () => {
                       <div className="flex flex-wrap items-center gap-3">
                         <select
                           className="border rounded px-3 py-1 dark:bg-black dark:border-white"
-                          defaultValue={item.quantity}
+                          value={item.quantity}
+                          onChange={(e) =>
+                            updateCart(item.id, Number(e.target.value), item.size, variant?.color)
+                          }
                         >
-                          {[1, 2, 3, 4].map((q) => (
-                            <option key={q}>{q}</option>
+                          {[1, 2, 3, 4, 5].map((q) => (
+                            <option key={q} value={q}>
+                              {q}
+                            </option>
                           ))}
                         </select>
                         <button

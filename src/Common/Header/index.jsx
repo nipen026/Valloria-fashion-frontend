@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef, useState } from 'react';
-import { FaSearch, FaUser, FaShoppingBag, FaTruck, FaHeart } from 'react-icons/fa';
+import { FaSearch, FaUser, FaShoppingBag, FaTruck, FaHeart, FaBoxOpen } from 'react-icons/fa';
 import logo from '../../assets/vigobee.png';
 import { IoMdExit } from 'react-icons/io';
 import { Link, useNavigate } from 'react-router-dom';
@@ -101,6 +101,9 @@ const Header = () => {
                   <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-zinc-900 shadow-lg rounded-md py-2 z-50">
                     <a href="/account" className="flex items-center gap-4 px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-zinc-700">
                       <FaUser /> My Account
+                    </a>
+                    <a href="/track" className="flex items-center gap-4 px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-zinc-700">
+                      <FaBoxOpen /> My Orders
                     </a>
                     <a onClick={handleLogout} className="flex items-center gap-4 px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-zinc-700">
                       <IoMdExit /> Logout

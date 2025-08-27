@@ -8,6 +8,7 @@ import { ADD_CART, ADD_WISHLIST } from '../../api/post';
 import { toast } from 'react-toastify';
 import { useCart } from '../../Context/CartContext';
 import { InfinitySpin } from 'react-loader-spinner';
+import SeoTags from '../SeoTags';
 
 const ProductDetail = () => {
     const [product, setProduct] = useState(null);
@@ -116,6 +117,7 @@ const ProductDetail = () => {
 
     return (
         <>
+        <SeoTags product={product} />
             <div className="bg-secondary dark:bg-black text-black dark:text-white min-h-screen px-4 py-10">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
                     {/* Product Image */}

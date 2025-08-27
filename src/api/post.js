@@ -69,6 +69,18 @@ export const ADD_ORDER = (data) =>{
       .catch((err) => reject(err)); 
   });
 }
+export const UPDATE_CART = (id,data) =>{
+    return new Promise((resolve, reject) => {
+    axios
+      .put(`${base_url}cart/updateCart/${id}`,data,{
+        headers:{
+            Authorization:`Bearer ${token}`
+        }
+      })
+      .then((res) => resolve(res))
+      .catch((err) => reject(err)); 
+  });
+}
 
 
 

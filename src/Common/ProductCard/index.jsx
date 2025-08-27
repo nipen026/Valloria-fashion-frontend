@@ -94,27 +94,40 @@ const ProductCard = ({ product }) => {
           {product.productName}
         </h3>
 
-        <p className="text-sm text-primary font-semibold flex flex-wrap items-center md:gap-5 justify-between md:justify-start  dark:text-gray-300 mb-2" onClick={() => navigate(`/productDetails/${product.id}`)}>
-          ₹ {variant.salePrice}{' '}
-          <p><del className="text-red-400">₹ {variant.mrp}</del></p>
-          <span className="text-black font-semibold">
-            ({Math.round(((variant.mrp - variant.salePrice) / variant.mrp) * 100)}% OFF)
-          </span>
-        </p>
+        <div
+  className="flex flex-wrap items-center md:gap-4 gap-2 mb-3 cursor-pointer"
+  onClick={() => navigate(`/productDetails/${product.id}`)}
+>
+  {/* Sale Price */}
+  <span className="text-green-600 dark:text-green-400 text-lg font-bold">
+    ₹ {variant.salePrice}
+  </span>
+
+  {/* MRP (strikethrough) */}
+  <span className="text-gray-500 dark:text-gray-400 line-through text-sm">
+    ₹ {variant.mrp}
+  </span>
+
+  {/* Discount Badge */}
+  <span className="bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300 px-2 py-0.5 rounded-full text-xs font-semibold">
+    {Math.round(((variant.mrp - variant.salePrice) / variant.mrp) * 100)}% OFF
+  </span>
+</div>
+
 
 
         {/* Colors */}
-        <div className="items-center gap-2 mb-2" onClick={() => navigate(`/productDetails/${product.id}`)}>
+        {/* <div className="items-center gap-2 mb-2" onClick={() => navigate(`/productDetails/${product.id}`)}>
           <p className="text-xs text-gray-500">Color</p>
 
           <div
             className="w-5 h-5 mt-1 flex flex-wrap items-center rounded-full border"
             style={{ backgroundColor: variant.color }}
           ></div>
-        </div>
+        </div> */}
 
         {/* Sizes */}
-        <div className="flex flex-wrap gap-2 mb-4">
+        {/* <div className="flex flex-wrap gap-2 mb-4">
           {variant.size.map((sz) => (
             <span
               key={sz}
@@ -123,7 +136,7 @@ const ProductCard = ({ product }) => {
               {sz}
             </span>
           ))}
-        </div>
+        </div> */}
 
         {/* Add to Cart */}
 

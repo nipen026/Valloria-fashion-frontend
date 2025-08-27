@@ -4,13 +4,16 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { CartProvider } from './Context/CartContext.jsx'
+import { HelmetProvider } from 'react-helmet-async'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-    <CartProvider>
-    <App />
-    </CartProvider>
+      <CartProvider>
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
+      </CartProvider>
     </BrowserRouter>
   </StrictMode>,
 )
