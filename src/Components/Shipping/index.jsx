@@ -311,7 +311,7 @@ const Shipping = () => {
     const matchedVariant = item.Product?.variants?.find(v => {
       if (item.size) {
         // Match by color and size
-        return v.color === item.color && v.size === item.size;
+        return v.color === item.color || v.size === item.size;
       } else {
         // Match only by color
         return v.color === item.color;
@@ -319,12 +319,15 @@ const Shipping = () => {
     });
 
     const price = matchedVariant?.salePrice || 0;
+    console.log(item.Product?.variants,"price");
+    
     return acc + price * item.quantity;
   }, 0);
 
   const total = subtotal - discount + shipping + tax;
 
-
+  console.log(orderItems,subtotal,total,"total");
+  
   useEffect(() => {
     GET_COUPONS().then((res) => {
       console.log(res);
@@ -432,9 +435,12 @@ const Shipping = () => {
       });
 
       const orderData = {
-        shippingAddress: `${formData.address} - ${formData.city} - ${formData.state} - ${formData.zip} , ${formData.firstName} - ${formData.lastName} , ${formData.phone}`
+        shippingAddress: `${formData.address} - ${formData.city} - ${formData.state} - ${formData.zip} , ${formData.firstName} - ${formData.lastName} , ${formData.phone}`,
+        paymentStatus:formData.paymentMethod,
+        totalAmount:total,
       };
-
+      console.log(orderData,"orderData");
+      
       ADD_ORDER(orderData).then((res) => {
         console.log(res);
         navigate('/track');
@@ -537,6 +543,8 @@ const Shipping = () => {
                   return v.color === item.color;
                 }
               });
+              console.log(matchedVariant,"matchedVariant");
+              
               const image = matchedVariant?.images?.[0] || '';
               const price = matchedVariant?.salePrice || 0;
               return (
@@ -559,7 +567,8 @@ const Shipping = () => {
 
             {/* Coupon Section */}
             <div className="mt-6">
-              <label className="text-sm font-medium block mb-2">Available Coupons</label>
+              {couponsListData.length > 0 &&
+              <label className="text-sm font-medium block mb-2">Available Coupons</label>}
 
               <div className="space-y-3">
                 {couponsListData.map((c) => {

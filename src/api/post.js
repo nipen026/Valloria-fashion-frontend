@@ -66,7 +66,7 @@ export const ADD_ORDER = (data) =>{
         }
       })
       .then((res) => resolve(res))
-      .catch((err) => reject(err));
+      .catch((err) => reject(err)); 
   });
 }
 

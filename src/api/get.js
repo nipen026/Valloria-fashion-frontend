@@ -96,3 +96,15 @@ export const GET_REVIEW_BY_PRODUCT = (id) => {
       .catch((err) => reject(err));
   });
 };
+export const GET_ORDER_BY_USERS = (id) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${base_url}orders/getAllOrder`,{
+        headers:{
+            Authorization:`Bearer ${token}`
+        }
+      })
+      .then((res) => resolve(res))
+      .catch((err) => reject(err));
+  });
+};
