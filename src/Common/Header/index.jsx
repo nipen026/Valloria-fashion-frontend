@@ -71,7 +71,7 @@ const Header = () => {
       <div className="bg-primary text-secondary text-sm py-2 overflow-hidden">
         <div className="animate-marquee whitespace-nowrap flex items-center justify-end gap-6">
           {/* <FaTruck className="inline-block ml-4" /> */}
-          <span className="font-medium">🚚 Free Shipping on Orders Over ₹999</span>
+          <span className="font-medium">🚚 Free Shipping on Orders Over ₹1999</span>
           <span className="font-medium">✨ New Collection Launching</span>
           <span className="font-medium">🛍️ Shop Women’s Wear – Vigobee</span>
         </div>
