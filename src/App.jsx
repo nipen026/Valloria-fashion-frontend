@@ -20,16 +20,16 @@ import 'aos/dist/aos.css';
 import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
-  // useEffect(() => {
-  //   const userPref = localStorage.getItem('theme');
-  //   const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  useEffect(() => {
+    const userPref = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  //   if (userPref === 'dark' || (!userPref && systemPrefersDark)) {
-  //     document.documentElement.classList.add('dark');
-  //   } else {
-  //     document.documentElement.classList.remove('dark');
-  //   }
-  // }, []);
+    if (userPref === 'dark' || (!userPref && systemPrefersDark)) {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, []);
 
   useEffect(() => {
     AOS.init({
