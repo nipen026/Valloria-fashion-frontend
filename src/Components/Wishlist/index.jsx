@@ -52,7 +52,7 @@ const Wishlist = () => {
           {wishlistItems.map((item) => (
             <div
               key={item.id}
-              className="bg-white dark:bg-zinc-900 shadow-md rounded-xl overflow-hidden transition hover:shadow-xl"
+              className="bg-white  shadow-md rounded-xl overflow-hidden transition hover:shadow-xl"
             >
               <img
                 src={item.image}
@@ -61,7 +61,7 @@ const Wishlist = () => {
               />
               <div className="p-4 flex flex-col gap-2">
                 <h3 className="text-lg font-semibold">{item.name}</h3>
-                <p className="text-gray-600 dark:text-gray-400">₹{item.price}</p>
+                <p className="text-gray-600 ">₹{item.price}</p>
 
                 {/* Color */}
                 <div
@@ -80,7 +80,7 @@ const Wishlist = () => {
                   {item.size.map((sz) => (
                     <span
                       key={sz}
-                      className="px-2 py-1 border text-xs rounded text-gray-600 dark:text-gray-300"
+                      className="px-2 py-1 border text-xs rounded text-gray-600 "
                     >
                       {sz}
                     </span>

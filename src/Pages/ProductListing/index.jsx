@@ -91,7 +91,7 @@ const ProductListing = () => {
       <Banner />
 
       {/* Products Section */}
-      <div className="bg-secondary dark:bg-black text-black dark:text-white px-6 py-10">
+      <div className="bg-secondary  text-black  px-6 py-10">
         <div className="container grid grid-cols-1 md:grid-cols-4 gap-10">
           <Filters filters={filters} setFilters={setFilters} />
           <div className="md:col-span-3 transition-all duration-500">

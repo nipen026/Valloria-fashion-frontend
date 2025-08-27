@@ -64,7 +64,7 @@ const ProductCard = ({ product }) => {
     <div
       key={variant.id}
 
-      className="group relative dark:bg-zinc-900 rounded-lg shadow overflow-hidden transition"
+      className="group relative  rounded-lg shadow overflow-hidden transition"
     >
       {/* Wishlist Icon */}
       <div className="absolute top-[-40px] left-4 group-hover:top-4 transition-all duration-300 z-10">
@@ -90,7 +90,7 @@ const ProductCard = ({ product }) => {
       />
 
       <div className="p-4 space-y-2" >
-        <h3 className="text-lg font-semibold text-black dark:text-white" onClick={() => navigate(`/productDetails/${product.id}`)}>
+        <h3 className="text-lg font-semibold text-black " onClick={() => navigate(`/productDetails/${product.id}`)}>
           {product.productName}
         </h3>
 
@@ -99,17 +99,17 @@ const ProductCard = ({ product }) => {
   onClick={() => navigate(`/productDetails/${product.id}`)}
 >
   {/* Sale Price */}
-  <span className="text-green-600 dark:text-green-400 text-lg font-bold">
+  <span className="text-green-600  text-lg font-bold">
     ₹ {variant.salePrice}
   </span>
 
   {/* MRP (strikethrough) */}
-  <span className="text-gray-500 dark:text-gray-400 line-through text-sm">
+  <span className="text-gray-500  line-through text-sm">
     ₹ {variant.mrp}
   </span>
 
   {/* Discount Badge */}
-  <span className="bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300 px-2 py-0.5 rounded-full text-xs font-semibold">
+  <span className="bg-red-100 text-red-600  px-2 py-0.5 rounded-full text-xs font-semibold">
     {Math.round(((variant.mrp - variant.salePrice) / variant.mrp) * 100)}% OFF
   </span>
 </div>

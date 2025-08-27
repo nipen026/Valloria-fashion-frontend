@@ -124,7 +124,7 @@ const Filters = ({ filters, setFilters }) => {
       <div className="md:hidden mb-4 flex justify-between items-center px-2">
         <button
           onClick={() => setShowFilters(!showFilters)}
-          className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-white px-4 py-2 border border-gray-300 rounded hover:bg-gray-100 dark:hover:bg-zinc-800"
+          className="flex items-center gap-2 text-sm font-medium text-gray-700  px-4 py-2 border border-gray-300 rounded hover:bg-gray-100 "
         >
           <svg width="18" height="18" fill="currentColor" viewBox="0 0 18 10">
             <path d="M0 1h18M2.5 5h13M6.25 9h5.5" stroke="currentColor" strokeWidth="1.5" />
@@ -134,7 +134,7 @@ const Filters = ({ filters, setFilters }) => {
       </div>
 
       {/* Filter Panel */}
-      <div className={`fixed  border-[1px] rounded-xl md:static top-[90px] left-0 z-40 bg-white dark:bg-zinc-900 md:bg-transparent shadow-md md:shadow-none h-full md:h-auto w-72 md:w-full p-4 transition-transform duration-300 ease-in-out
+      <div className={`fixed  border-[1px] rounded-xl md:static top-[90px] left-0 z-40 bg-white  md:bg-transparent shadow-md md:shadow-none h-full md:h-auto w-72 md:w-full p-4 transition-transform duration-300 ease-in-out
         ${showFilters ? 'translate-x-0' : '-translate-x-full'} 
         md:translate-x-0 md:block`}>
         
@@ -142,10 +142,10 @@ const Filters = ({ filters, setFilters }) => {
 
           {/* Category Filter */}
           <div>
-            <h4 className="font-semibold mb-2 text-gray-800 dark:text-white">Category</h4>
+            <h4 className="font-semibold mb-2 text-gray-800 ">Category</h4>
             {Object.entries(subCategories).map(([group, items]) => (
               <div key={group} className="mb-3">
-                <p className="text-sm font-medium text-gray-600 dark:text-white">{group}</p>
+                <p className="text-sm font-medium text-gray-600 ">{group}</p>
                 <div className="flex flex-wrap gap-2 mt-2">
                   {items.map((item) => (
                     <button
@@ -154,7 +154,7 @@ const Filters = ({ filters, setFilters }) => {
                       className={`px-3 py-1 rounded-full border text-xs ${
                         filters.category.includes(item)
                           ? 'bg-primary text-white border-primary'
-                          : 'border-gray-300 text-gray-700 dark:text-white'
+                          : 'border-gray-300 text-gray-700 '
                       }`}
                     >
                       {item}
@@ -167,9 +167,9 @@ const Filters = ({ filters, setFilters }) => {
 
           {/* Price Filter */}
           <div className='space-y-2'>
-            <h4 className="font-semibold mb-2 text-gray-800 dark:text-white">Price Range</h4>
+            <h4 className="font-semibold mb-2 text-gray-800 ">Price Range</h4>
             {['₹0 - ₹500', '₹500 - ₹1000', '₹1000 - ₹2000', '₹2000+'].map((label) => (
-              <label key={label} className="block text-sm text-gray-600 dark:text-white">
+              <label key={label} className="block text-sm text-gray-600 ">
                 <input
                   type="checkbox"
                   checked={filters.price.includes(label)}
@@ -183,7 +183,7 @@ const Filters = ({ filters, setFilters }) => {
 
           {/* Size Filter */}
           <div>
-            <h4 className="font-semibold mb-2 text-gray-800 dark:text-white">Size</h4>
+            <h4 className="font-semibold mb-2 text-gray-800 ">Size</h4>
             <div className="flex flex-wrap gap-2">
               {SIZE_LIST.map((size) => (
                 <button
@@ -192,7 +192,7 @@ const Filters = ({ filters, setFilters }) => {
                   className={`px-3 py-1 rounded border text-sm ${
                     filters.size.includes(size)
                       ? 'bg-primary text-white border-primary'
-                      : 'border-gray-300 text-gray-700 dark:text-white'
+                      : 'border-gray-300 text-gray-700 '
                   }`}
                 >
                   {size}
@@ -203,7 +203,7 @@ const Filters = ({ filters, setFilters }) => {
 
           {/* Color Filter */}
           <div>
-            <h4 className="font-semibold mb-2 text-gray-800 dark:text-white">Color</h4>
+            <h4 className="font-semibold mb-2 text-gray-800 ">Color</h4>
             <div className="flex flex-wrap gap-3">
               {ALL_COLORS.map((color) => (
                 <div

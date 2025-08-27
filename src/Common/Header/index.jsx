@@ -67,7 +67,7 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-secondary dark:bg-black shadow">
+    <header className="sticky top-0 z-50 bg-secondary  shadow">
       <div className="bg-primary text-secondary text-sm py-2 overflow-hidden">
         <div className="animate-marquee whitespace-nowrap flex items-center justify-end gap-6">
           {/* <FaTruck className="inline-block ml-4" /> */}
@@ -79,19 +79,19 @@ const Header = () => {
 
       <nav className="flex justify-between items-center px-6 py-4">
         <Link to={'/'}>
-          <div className="flex items-center gap-2 text-primary font-bold text-lg dark:text-secondary">
+          <div className="flex items-center gap-2 text-primary font-bold text-lg ">
             <img src={logo} alt='logo' className='w-[50px]  object-contain cursor-pointer' />
           </div>
         </Link>
 
-        <ul className={`hidden md:flex gap-6 text-sm dark:text-secondary ${showSearch ? 'opacity-0' : 'opacity-100'}`}>
+        <ul className={`hidden md:flex gap-6 text-sm  ${showSearch ? 'opacity-0' : 'opacity-100'}`}>
           <li onClick={() => navigate('/productListing?latest=true')} className="hover:text-primary cursor-pointer font-medium text-[16px]">New Arrivals</li>
           <li onClick={() => navigate('/productListing?category=formal_wear')} className="hover:text-primary cursor-pointer font-medium text-[16px]">Formal Wear</li>
           <li onClick={() => navigate('/productListing?category=casual_wear')} className="hover:text-primary cursor-pointer font-medium text-[16px]">Casual Wear</li>
           <li onClick={() => navigate('/productListing?category=sale')} className="hover:text-primary cursor-pointer font-medium text-[16px]">Sale</li>
         </ul>
 
-        <div className="flex gap-4 items-center dark:text-secondary relative">
+        <div className="flex gap-4 items-center  relative">
           <FaSearch onClick={() => setShowSearch(!showSearch)} className="cursor-pointer hover:text-primary" />
           <FaHeart onClick={() => navigate('/wishlist')} className="cursor-pointer text-red-600 hover:text-red-500" />
 
@@ -100,14 +100,14 @@ const Header = () => {
               <div className="relative" ref={userMenuRef}>
                 <FaUser onClick={() => setShowUserMenu(!showUserMenu)} className="cursor-pointer hover:text-primary" />
                 {showUserMenu && (
-                  <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-zinc-900 shadow-lg rounded-md py-2 z-50">
-                    <a href="/account" className="flex items-center gap-4 px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-zinc-700">
+                  <div className="absolute right-0 mt-2 w-40 bg-white  shadow-lg rounded-md py-2 z-50">
+                    <a href="/account" className="flex items-center gap-4 px-4 py-2 text-sm hover:bg-gray-100 ">
                       <FaUser /> My Account
                     </a>
-                    <a href="/track" className="flex items-center gap-4 px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-zinc-700">
+                    <a href="/track" className="flex items-center gap-4 px-4 py-2 text-sm hover:bg-gray-100 ">
                       <FaBoxOpen /> My Orders
                     </a>
-                    <a onClick={handleLogout} className="flex items-center gap-4 px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-zinc-700">
+                    <a onClick={handleLogout} className="flex items-center gap-4 px-4 py-2 text-sm hover:bg-gray-100 ">
                       <IoMdExit /> Logout
                     </a>
                   </div>
@@ -134,7 +134,7 @@ const Header = () => {
           <input
             type="text"
             placeholder="Search for products..."
-            className="w-full p-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-zinc-800 text-black dark:text-white"
+            className="w-full p-3 rounded-md border border-gray-300  bg-white  text-black "
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value); if (e.target.value.length > 0) {
@@ -156,7 +156,7 @@ const Header = () => {
           {searchResults.length > 0 && (
             <>
 
-              <div className="absolute left-6 right-6 bg-white dark:bg-zinc-800 shadow-md rounded-md mt-2 z-50 max-h-60 overflow-y-auto">
+              <div className="absolute left-6 right-6 bg-white  shadow-md rounded-md mt-2 z-50 max-h-60 overflow-y-auto">
                 {searchResults.map((product) => (
                   <div
                     key={product.id}
@@ -165,12 +165,12 @@ const Header = () => {
                       setSearchTerm('');
                       navigate(`/productDetails/${product.id}`);
                     }}
-                    className="flex gap-4 p-3 hover:bg-gray-100 dark:hover:bg-zinc-700 cursor-pointer border-b dark:border-zinc-600"
+                    className="flex gap-4 p-3 hover:bg-gray-100  cursor-pointer border-b "
                   >
                     <img src={product.variants?.[0].images?.[0]} alt={product.productName} className="w-14 h-14 object-cover rounded" />
                     <div>
                       <div className="font-medium text-sm">{product.productName}</div>
-                      <div className="text-xs text-gray-500 dark:text-gray-300">Sizes: {product.variants?.[0]?.size?.join(', ') || 'N/A'}</div>
+                      <div className="text-xs text-gray-500 ">Sizes: {product.variants?.[0]?.size?.join(', ') || 'N/A'}</div>
                       <div className="flex gap-1 mt-1">
                         {product.variants?.map((product, idx) => (
                           <span key={idx} className="w-3 h-3 rounded-full border border-gray-300" style={{ backgroundColor: product?.color }}></span>

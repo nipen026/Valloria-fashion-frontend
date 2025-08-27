@@ -454,15 +454,15 @@ const Shipping = () => {
     });
   }
   return (
-    <div className="min-h-auto bg-secondary dark:bg-black text-black dark:text-white">
+    <div className="min-h-auto bg-secondary  text-black ">
       {/* Progress bar */}
       <div className="flex flex-wrap justify-center items-center bg-[#E8F3F1] gap-4 md:gap-8 mb-10 py-5 px-4 text-sm sm:text-base">
         <div className="text-gray-400 flex items-center gap-2"><IoMdCart /> Cart</div>
-        <div className="hidden sm:block w-16 sm:w-32 h-px bg-gray-300 dark:bg-gray-600" />
+        <div className="hidden sm:block w-16 sm:w-32 h-px bg-gray-300 " />
         <div className="text-primary font-semibold flex items-center gap-2"><FaTruck /> Shipping</div>
-        <div className="hidden sm:block w-16 sm:w-32 h-px bg-gray-300 dark:bg-gray-600" />
+        <div className="hidden sm:block w-16 sm:w-32 h-px bg-gray-300 " />
         <div className="text-gray-400 flex items-center gap-2"><FaCreditCard /> Payment</div>
-        <div className="hidden sm:block w-16 sm:w-32 h-px bg-gray-300 dark:bg-gray-600" />
+        <div className="hidden sm:block w-16 sm:w-32 h-px bg-gray-300 " />
         <div className="text-gray-400 flex items-center gap-2"><FaCheckCircle /> Confirmation</div>
       </div>
 
@@ -487,7 +487,7 @@ const Shipping = () => {
                   placeholder={placeholder}
                   value={formData[name]}
                   onChange={handleChange}
-                  className="border-2 border-primary rounded px-4 py-2 w-full bg-white dark:bg-black"
+                  className="border-2 border-primary rounded px-4 py-2 w-full bg-white "
                 />
                 {errors[name] && <p className="text-red-500 text-xs mt-1">{errors[name]}</p>}
               </div>
@@ -512,7 +512,7 @@ const Shipping = () => {
                     key={id}
                     htmlFor={id}
                     className={`flex items-center cursor-pointer border rounded px-4 py-2 transition w-full sm:w-auto
-                      ${isSelected ? 'bg-primary text-white border-primary' : 'bg-white text-gray-700 border-primary dark:bg-zinc-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-zinc-700'}`}
+                      ${isSelected ? 'bg-primary text-white border-primary' : 'bg-white text-gray-700 border-primary  hover:bg-gray-100 '}`}
                   >
                     <input
                       type="radio"
@@ -532,7 +532,7 @@ const Shipping = () => {
         </div>
 
         {/* Order Summary */}
-        <div className="bg-gray-100 dark:bg-zinc-900 rounded p-6 shadow-md">
+        <div className="bg-gray-100  rounded p-6 shadow-md">
           <h3 className="text-lg font-semibold mb-4 text-primary">Order Summary</h3>
           <div className="space-y-4 text-sm">
             {orderItems.map((item, i) => {
@@ -555,9 +555,9 @@ const Shipping = () => {
                   <div className="flex-1">
                     <h4 className="font-medium">{item.Product?.productName}</h4>
                     {item.size ?
-                      <p className="text-xs text-gray-600 dark:text-gray-400">Size: {item.size}</p> : ''}
+                      <p className="text-xs text-gray-600 ">Size: {item.size}</p> : ''}
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-gray-600 dark:text-gray-400">Color:</span>
+                      <span className="text-xs text-gray-600 ">Color:</span>
                       <div className="w-4 h-4 rounded-full border border-gray-300" style={{ backgroundColor: item.color }} />
                     </div>
                     <p className="text-xs">Qty: {item.quantity}</p>
@@ -584,8 +584,8 @@ const Shipping = () => {
                       key={c.code}
                       className={`border bg-white rounded-lg p-4 flex justify-between items-center cursor-pointer transition-all duration-200 shadow-sm
                           ${isActive
-                          ? 'border-green-600 bg-green-50 dark:bg-green-900'
-                          : 'hover:border-primary hover:bg-gray-50 dark:hover:bg-zinc-800'}`
+                          ? 'border-green-600 bg-green-50 '
+                          : 'hover:border-primary hover:bg-gray-50 '}`
                       }
                       onClick={() => {
                         setCouponCode(c.code);
@@ -604,16 +604,16 @@ const Shipping = () => {
                     >
                       <div>
                         <h4 className="text-[14px] font-semibold text-primary">{c.label}</h4>
-                        <p className="text-xs text-gray-500 dark:text-gray-300">{c.code}</p>
+                        <p className="text-xs text-gray-500 ">{c.code}</p>
                       </div>
-                      <div className={`text-sm font-medium ${isActive ? 'text-green-700 dark:text-green-300' : 'text-primary'}`}>
+                      <div className={`text-sm font-medium ${isActive ? 'text-green-700 ' : 'text-primary'}`}>
                         {isActive ? '✔ Applied' : 'Apply'}
                       </div>
                     </div>
                   );
                 })}
                 {discount > 0 && (
-                  <p className="text-xs text-green-600 dark:text-green-400 mt-1">
+                  <p className="text-xs text-green-600  mt-1">
                     Applied: {currencyFormatter.format(discount)} off
                   </p>
                 )}
@@ -623,7 +623,7 @@ const Shipping = () => {
 
 
 
-            <hr className="border-gray-300 dark:border-gray-600" />
+            <hr className="border-gray-300 " />
             <div className="flex justify-between"><span>Subtotal</span><span>{currencyFormatter.format(subtotal)}</span></div>
             {discount > 0 && <div className="flex justify-between text-green-600"><span>Discount</span><span>-{currencyFormatter.format(discount)}</span></div>}
             <div className="flex justify-between"><span>Shipping</span><span>{currencyFormatter.format(shipping)}</span></div>
@@ -638,7 +638,7 @@ const Shipping = () => {
             Place Order
           </button>
 
-          <div className="mt-3 flex items-center gap-2 justify-center text-center text-xs text-gray-500 dark:text-gray-400">
+          <div className="mt-3 flex items-center gap-2 justify-center text-center text-xs text-gray-500 ">
             <FaLock /> Secure Checkout
           </div>
 

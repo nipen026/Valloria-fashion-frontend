@@ -42,18 +42,18 @@ const NewArrivals = () => {
   };
 
   return (
-    <section className="py-10 bg-[#F9FAFB] dark:bg-black transition-colors">
+    <section className="py-10 bg-[#F9FAFB]  transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading Row */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-black dark:text-white">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-black ">
             New Arrivals
           </h2>
           <div
             className="cursor-pointer group"
             onClick={() => navigate('/productListing?latest=true')}
           >
-            <p className="flex items-center gap-2 text-black dark:text-white font-medium">
+            <p className="flex items-center gap-2 text-black  font-medium">
               <span className="transition-transform duration-300 group-hover:translate-x-1">
                 View More
               </span>
@@ -73,7 +73,7 @@ const NewArrivals = () => {
                 data-aos="zoom-in"
                 data-aos-delay={index * 100}
                 key={variant.id}
-                className="group relative bg-white dark:bg-zinc-900 rounded-xl shadow-md hover:shadow-lg overflow-hidden transition-all"
+                className="group relative bg-white  rounded-xl shadow-md hover:shadow-lg overflow-hidden transition-all"
               >
                 {/* Wishlist Icon */}
                 <div className="absolute top-[-40px] left-4 group-hover:top-4 transition-all duration-300 z-10">
@@ -101,7 +101,7 @@ const NewArrivals = () => {
                 <div className="p-4 space-y-2">
                   {/* Product Name */}
                   <h3
-                    className="text-lg font-semibold text-black dark:text-white cursor-pointer"
+                    className="text-lg font-semibold text-black  cursor-pointer"
                     onClick={() => navigate(`productDetails/${product.id}`)}
                   >
                     {product.productName}
@@ -113,17 +113,17 @@ const NewArrivals = () => {
                     onClick={() => navigate(`/productDetails/${product.id}`)}
                   >
                     {/* Sale Price */}
-                    <span className="text-green-600 dark:text-green-400 text-lg font-bold">
+                    <span className="text-green-600  text-lg font-bold">
                       ₹ {variant.salePrice}
                     </span>
 
                     {/* MRP (strikethrough) */}
-                    <span className="text-gray-500 dark:text-gray-400 line-through text-sm">
+                    <span className="text-gray-500  line-through text-sm">
                       ₹ {variant.mrp}
                     </span>
 
                     {/* Discount Badge */}
-                    <span className="bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300 px-2 py-0.5 rounded-full text-xs font-semibold">
+                    <span className="bg-red-100 text-red-600  px-2 py-0.5 rounded-full text-xs font-semibold">
                       {Math.round(((variant.mrp - variant.salePrice) / variant.mrp) * 100)}% OFF
                     </span>
                   </div>

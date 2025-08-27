@@ -118,7 +118,7 @@ const ProductDetail = () => {
     return (
         <>
         <SeoTags product={product} />
-            <div className="bg-secondary dark:bg-black text-black dark:text-white min-h-screen px-4 py-10">
+            <div className="bg-secondary  text-black  min-h-screen px-4 py-10">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
                     {/* Product Image */}
                     <div className="flex flex-col gap-4 items-center">
@@ -221,7 +221,7 @@ const ProductDetail = () => {
                                         onClick={() => setSelectedSize(size)}
                                         className={`px-4 py-1 border rounded text-sm ${selectedSize === size
                                             ? 'bg-primary text-white'
-                                            : 'dark:text-white text-black'
+                                            : 'text-black'
                                             }`}
                                     >
                                         {size}
@@ -240,9 +240,9 @@ const ProductDetail = () => {
                             </button>
                             <button
                                 onClick={handleAddToWishlist}
-                                className="group border px-6 py-3 rounded w-full dark:border-white border-black hover:bg-primary hover:text-white flex items-center justify-center gap-2"
+                                className="group border px-6 py-3 rounded w-full  border-black hover:bg-primary hover:text-white flex items-center justify-center gap-2"
                             >
-                                <span className="text-black group-hover:text-pink-500 dark:text-white">
+                                <span className="text-black group-hover:text-pink-500 ">
                                     <FaHeart />
                                 </span>
                                 ADD TO WISHLIST
@@ -253,7 +253,7 @@ const ProductDetail = () => {
                         {/* Description */}
                         <div className="mb-4">
                             <div
-                                className="text-md text-gray-700 dark:text-gray-300 leading-7"
+                                className="text-md text-gray-700  leading-7"
                                 dangerouslySetInnerHTML={{ __html: product.description }}
                             />
                         </div>
@@ -289,7 +289,7 @@ const ProductDetail = () => {
                                         <span className="text-xs text-gray-500 ml-2">({review.rating}/5)</span>
                                     </div>
                                 </div>
-                                <div className="text-md text-gray-700 dark:text-gray-300">{review.comment}</div>
+                                <div className="text-md text-gray-700 ">{review.comment}</div>
                                 <div className="text-xs text-gray-400">{new Date(review.createdAt).toLocaleDateString()}</div>
                             </div>
                         ))}

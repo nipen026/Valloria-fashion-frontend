@@ -95,7 +95,7 @@ const Cart = () => {
   const total = subtotal + shipping + taxTotal;
   return (
 
-    <div className="bg-secondary dark:bg-black text-black dark:text-white py-10 px-4 sm:px-6 lg:px-8">
+    <div className="bg-secondary  text-black  py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
         {/* Left: Cart Items */}
         <div className="md:col-span-2">
@@ -112,7 +112,7 @@ const Cart = () => {
               return (
                 <div
                   key={item.id}
-                  className="flex flex-col sm:flex-row items-start sm:items-center gap-4 border-b pb-6 dark:border-gray-700"
+                  className="flex flex-col sm:flex-row items-start sm:items-center gap-4 border-b pb-6 "
                 >
                   <img
                     src={image}
@@ -123,11 +123,11 @@ const Cart = () => {
                     <div className="flex justify-between items-start">
                       <div className="space-y-1">
                         <h4 className="font-semibold text-base">{product?.productName}</h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                        <p className="text-sm text-gray-600 ">
                           <span className="inline-block w-4 h-4 rounded-full mr-1" style={{ backgroundColor: variant?.color }}></span>
 
                         </p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                        <p className="text-sm text-gray-600 ">
                           Size: {item.size}
                         </p>
                       </div>
@@ -141,7 +141,7 @@ const Cart = () => {
                     <div className="flex flex-wrap items-center justify-between mt-3 gap-3">
                       <div className="flex flex-wrap items-center gap-3">
                         <select
-                          className="border rounded px-3 py-1 dark:bg-black dark:border-white"
+                          className="border rounded px-3 py-1 "
                           value={item.quantity}
                           onChange={(e) =>
                             updateCart(item.id, Number(e.target.value), item.size, variant?.color)
@@ -172,7 +172,7 @@ const Cart = () => {
         </div>
 
         {/* Right: Order Summary */}
-        <div className="bg-white dark:bg-zinc-900 rounded-xl p-6 shadow-md sticky top-6 h-fit">
+        <div className="bg-white  rounded-xl p-6 shadow-md sticky top-6 h-fit">
           <h3 className="text-xl font-bold mb-4">Order Summary</h3>
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
@@ -187,7 +187,7 @@ const Cart = () => {
               <span>Estimated Tax</span>
               <span>{formatINR(taxTotal)}</span>
             </div>
-            <div className="border-t pt-3 flex justify-between font-bold text-base dark:border-gray-700">
+            <div className="border-t pt-3 flex justify-between font-bold text-base ">
               <span>Total</span>
               <span>{formatINR(total)}</span>
             </div>
@@ -198,7 +198,7 @@ const Cart = () => {
             </button>
           </Link>
           <Link to="/">
-            <button className="mt-3 w-full border border-black dark:border-white py-2 rounded text-sm hover:bg-gray-100 dark:hover:bg-zinc-800 transition">
+            <button className="mt-3 w-full border border-black  py-2 rounded text-sm hover:bg-gray-100  transition">
               Continue Shopping
             </button>
           </Link>

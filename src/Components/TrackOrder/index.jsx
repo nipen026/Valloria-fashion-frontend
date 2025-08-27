@@ -142,7 +142,7 @@ const TrackOrder = () => {
   };
 
   return (
-    <div className=" bg-secondary dark:bg-black text-black dark:text-white px-4 py-10">
+    <div className=" bg-secondary  text-black  px-4 py-10">
       <h1 className="text-2xl font-bold text-center mb-10">My Orders</h1>
 
       {orders.map((order) => {
@@ -161,7 +161,7 @@ const TrackOrder = () => {
         return (
           <div
             key={order.id}
-            className="bg-white dark:bg-zinc-900 rounded-lg shadow p-6 max-w-5xl mx-auto mb-10"
+            className="bg-white  rounded-lg shadow p-6 max-w-5xl mx-auto mb-10"
           >
             {/* Status Progress */}
             <div className="grid grid-cols-4 text-center text-sm font-medium mb-4">
@@ -180,7 +180,7 @@ const TrackOrder = () => {
               ))}
             </div>
 
-            <div className="w-full h-2 bg-gray-200 dark:bg-zinc-800 rounded-full overflow-hidden">
+            <div className="w-full h-2 bg-gray-200  rounded-full overflow-hidden">
               <div
                 className="h-full bg-primary transition-all duration-700"
                 style={{ width: `${((currentStep + 1) / statusSteps.length) * 100}%` }}
@@ -200,25 +200,25 @@ const TrackOrder = () => {
                   />
                   <div>
                     <h5 className="font-medium">{productName}</h5>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <p className="text-sm text-gray-500 ">
                       Qty: {quantity}
                     </p>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">
-                      <p>Payment: <span className="font-medium text-black dark:text-white">{patmentMethod}</span></p>
+                    <div className="text-sm text-gray-500 ">
+                      <p>Payment: <span className="font-medium text-black ">{patmentMethod}</span></p>
                     </div>
                     <p className="font-semibold text-primary mt-1">₹{productPrice}</p>
                   </div>
                 </div>
-                <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                <div className="mt-4 text-sm text-gray-600 ">
                   <p className="mb-1">
                     Order Date:{" "}
-                    <span className="font-medium text-black dark:text-white">
+                    <span className="font-medium text-black ">
                       {new Date(order.createdAt).toLocaleDateString()}
                     </span>
                   </p>
                   <p>
                     Expected Delivery:{" "}
-                    <span className="font-medium text-black dark:text-white">
+                    <span className="font-medium text-black ">
                       {product?.deliveryTime
                         ? `${product.deliveryTime} Days`
                         : "N/A"}
@@ -230,7 +230,7 @@ const TrackOrder = () => {
               {/* Delivery Info */}
               <div>
                 <h4 className="font-semibold mb-3">Delivery Information</h4>
-                <div className="text-sm space-y-3 text-gray-600 dark:text-gray-400">
+                <div className="text-sm space-y-3 text-gray-600 ">
                   <div className="flex items-center gap-2">
                     <FaMapMarkerAlt />
                     <span>
@@ -259,12 +259,12 @@ const TrackOrder = () => {
       })}
 
       {/* Support Section */}
-     <div className="max-w-5xl mx-auto bg-gray-100 dark:bg-zinc-800 p-6 rounded-lg shadow text-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+     <div className="max-w-5xl mx-auto bg-gray-100  p-6 rounded-lg shadow text-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
   <div>
-    <p className="font-medium text-black dark:text-white flex items-center gap-2 mb-1">
+    <p className="font-medium text-black  flex items-center gap-2 mb-1">
       Need Help <FaQuestion className="text-red-500" />
     </p>
-    <p className="text-gray-600 dark:text-gray-400">
+    <p className="text-gray-600 ">
       Our customer service team is here to assist you with any questions.
     </p>
   </div>
